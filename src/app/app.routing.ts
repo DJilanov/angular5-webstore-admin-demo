@@ -47,6 +47,9 @@ const appRoutes: Routes = [
     data: {
       title: 'Orders'
     }
+  }, { 
+    path: '**', 
+    component: AdminComponent
   }
 ];
 
