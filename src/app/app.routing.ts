@@ -11,38 +11,38 @@ import { AdminNavigationComponent } from './components/admin-navigation/admin_na
 
 const appRoutes: Routes = [
   { 
-    path: '', 
+    path: 'admin', 
     component: AdminComponent,
     data: {
       title: 'Admin'
     }
   }, { 
-    path: 'navigation', 
+    path: 'admin/navigation', 
     component: AdminNavigationComponent,
     data: {
       title: 'Navigation'
     }
   }, { 
-    path: 'products', 
+    path: 'admin/products', 
     component: AdminProductsComponent,
     data: {
       title: 'Products'
     }
   }, { 
-    path: 'categories', 
+    path: 'admin/categories', 
     component: AdminCategoriesComponent,
     data: {
       title: 'Categories'
     }
   }, { 
-    path: 'messages', 
+    path: 'admin/messages', 
     component: AdminMessagesComponent,
     data: {
       title: 'Messages'
     }
   }, { 
     // TODO
-    path: 'orders', 
+    path: 'admin/orders', 
     component: AdminComponent,
     data: {
       title: 'Orders'
