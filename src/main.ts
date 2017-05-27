@@ -3,10 +3,4 @@ import { enableProdMode } from '@angular/core';
 
 import { AppModule } from './app/app.module';
 
-if ( process.env.ENV === 'production' ) {
-    enableProdMode();
-}
-
-export class startWidget {} 
-
 platformBrowserDynamic().bootstrapModule(AppModule);
