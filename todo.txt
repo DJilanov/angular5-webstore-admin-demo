@@ -5,6 +5,8 @@ IF THE PRODUCT IS CURRENTLY GENERATED AND WE CLICK X FOR IMAGE JUST DELETE IT DO
 There is issue on IE-11. The contact folder blows up. Fix it!!!!!
 There must be zoom over the zoomable details images
 
+1.5 admin
+Do the correct routing ( there will be probably errors )
 
 2. Back-end
 When we upload main image we must delete the unused main image file if it is not used anywhere else
@@ -30,3 +32,10 @@ Everyone can upload images to our server.. its not ok !!!
 
 6. Reported bugs
 When you add image to already created file the image is not uploaded
+
+7. Migration errors ( high priority )
+Problem with the search. It shows wrong file
+Carousel will break when you change orientation
+
+8. NPM modules
+Generate carousel and image zoom directives as npm modules

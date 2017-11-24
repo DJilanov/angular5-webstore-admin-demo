@@ -15,18 +15,18 @@ import { ErrorHandlerService } from './services/error.handler.service';
 
 export class AppComponent {
 
-    private products: Array<Object> = [];
-    private categories: Array<Object>;
-    private location: string;
+    public products: Array<Object> = [];
+    public categories: Array<Object>;
+    public location: string;
 
     constructor(
-        private router: Router,
-        private fetcher: FetcherService,
-        private dictionary: Dictionary,
-        private productsService: ProductsService,
-        private categoriesService: CategoriesService,
-        private eventEmiterService: EventEmiterService,
-        private errorHandlerService: ErrorHandlerService
+        public router: Router,
+        public fetcher: FetcherService,
+        public dictionary: Dictionary,
+        public productsService: ProductsService,
+        public categoriesService: CategoriesService,
+        public eventEmiterService: EventEmiterService,
+        public errorHandlerService: ErrorHandlerService
     ) {
         fetcher.getProductsAndCategories().subscribe(
             data => this.setData(data),
@@ -34,7 +34,7 @@ export class AppComponent {
         );
     };
 
-    private setData(result) {
+    public setData(result) {
         var response = {
             products: [],
             categories: []
@@ -51,12 +51,12 @@ export class AppComponent {
         this.eventEmiterService.emitFetchedData(response);
     }
 
-    private setProducts(result) {
+    public setProducts(result) {
         this.products = result;
         this.productsService.setProducts(this.products);
     }
 
-    private setCategories(result) {
+    public setCategories(result) {
         this.categories = result;
         this.categoriesService.setCategories(this.categories);
 

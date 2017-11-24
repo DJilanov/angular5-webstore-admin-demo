@@ -9,7 +9,7 @@ import { Config } from '../config';
  */
 export class AuthService {
 
-    private userData: Object = {
+    public userData: Object = {
         username: '',
         password: ''
     };

@@ -3,53 +3,56 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Admin Views
-import { AdminComponent } from './components/admin/admin.component';
-import { AdminMessagesComponent } from './components/admin-messages/admin_messages.component';
-import { AdminProductsComponent } from './components/admin-products/admin_products.component';
-import { AdminCategoriesComponent } from './components/admin-categories/admin_categories.component';
-import { AdminNavigationComponent } from './components/admin-navigation/admin_navigation.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ProductsComponent } from './components/products/products.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 const appRoutes: Routes = [
   { 
-    path: 'admin', 
-    component: AdminComponent,
+    path: 'login', 
+    component: LoginComponent,
     data: {
-      title: 'Admin'
+      title: 'Login'
     }
   }, { 
-    path: 'admin/navigation', 
-    component: AdminNavigationComponent,
+    path: 'home', 
+    component: HomeComponent,
+    data: {
+      title: 'Home'
+    }
+  }, { 
+    path: 'navigation', 
+    component: NavigationComponent,
     data: {
       title: 'Navigation'
     }
   }, { 
-    path: 'admin/products', 
-    component: AdminProductsComponent,
+    path: 'products', 
+    component: ProductsComponent,
     data: {
       title: 'Products'
     }
   }, { 
-    path: 'admin/categories', 
-    component: AdminCategoriesComponent,
+    path: 'categories', 
+    component: CategoriesComponent,
     data: {
       title: 'Categories'
     }
   }, { 
-    path: 'admin/messages', 
-    component: AdminMessagesComponent,
+    path: 'messages', 
+    component: MessagesComponent,
     data: {
       title: 'Messages'
     }
-  }, { 
-    // TODO
-    path: 'admin/orders', 
-    component: AdminComponent,
-    data: {
-      title: 'Orders'
-    }
-  }, { 
+  }, {
     path: '**', 
-    component: AdminComponent
+    component: LoginComponent,
+    data: {
+      title: 'Login'
+    }
   }
 ];
 

@@ -2,9 +2,8 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule }  from '@angular/platform-browser';
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { FormsModule, ReactiveFormsModule, Validators }   from '@angular/forms';
-import { RecaptchaModule, RecaptchaLoaderService } from 'ng2-recaptcha';
+// import { RecaptchaModule, RecaptchaLoaderService } from 'ng2-recaptcha';
 
 // Router
 import { routing, appRoutingProviders } from './app.routing';
@@ -16,17 +15,17 @@ import { BulgarianDictionary } from './dictionary/bg.dictionary';
 
 // Admin
 import { AppComponent } from './app.component';
-import { Ng2DragDropModule } from "ng2-drag-drop";
+import { NgDragDropModule } from 'ng-drag-drop';
 
-import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
 import { FormComponent } from './components/form/form.component';
 import { ImageComponent } from './components/image/image.component';
-import { AdminHomeComponent } from './components/admin-home/admin_home.component';
-import { AdminMessagesComponent } from './components/admin-messages/admin_messages.component';
-import { AdminProductsComponent } from './components/admin-products/admin_products.component';
-import { AdminCategoriesComponent } from './components/admin-categories/admin_categories.component';
-import { AdminNavigationComponent } from './components/admin-navigation/admin_navigation.component';
-import { AdminProductModalComponent } from './components/admin-product-modal/admin_product_modal.component';
+import { HomeComponent } from './components/home/home.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { ProductsComponent } from './components/products/products.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { ProductModalComponent } from './components/product-modal/product_modal.component';
 
 import { AuthService } from './services/auth.service';
 
@@ -47,24 +46,22 @@ import { ErrorHandlerService } from './services/error.handler.service';
         HttpModule,
         FormsModule,
         BrowserModule,
-        RecaptchaModule,
-        Ng2BootstrapModule,
+        // RecaptchaModule,
         ReactiveFormsModule,
-        // admin
-        Ng2DragDropModule
+        NgDragDropModule.forRoot()
     ],
     // Components & Views
     declarations: [ 
         AppComponent,
         FormComponent,
         ImageComponent,
-        AdminComponent,
-        AdminHomeComponent,
-        AdminMessagesComponent,
-        AdminProductsComponent,
-        AdminCategoriesComponent,
-        AdminNavigationComponent,
-        AdminProductModalComponent,
+        LoginComponent,
+        HomeComponent,
+        MessagesComponent,
+        ProductsComponent,
+        CategoriesComponent,
+        NavigationComponent,
+        ProductModalComponent,
     ],
     // Bootstraping
     bootstrap: [ 
@@ -87,7 +84,7 @@ import { ErrorHandlerService } from './services/error.handler.service';
         ErrorHandlerService,
         AuthService,
         // recaptcha
-        RecaptchaLoaderService
+        // RecaptchaLoaderService
     ]
 })
 

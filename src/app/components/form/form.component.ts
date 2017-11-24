@@ -1,6 +1,5 @@
 import { Component, Input, Output, ViewChild, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { RecaptchaLoaderService } from 'ng2-recaptcha';
 import { FetcherService } from '../../services/fetcher.service';
 import { Dictionary } from '../../dictionary/dictionary.service';
 
@@ -14,20 +13,20 @@ import { Dictionary } from '../../dictionary/dictionary.service';
 
 export class FormComponent implements OnInit {
     @Input()
-    formOptions: Object;
+    formOptions;
 
     @Input()
     formSubmit: Function;
 
-    private ngForm: FormGroup;
+    public ngForm: FormGroup;
 
-    private captcha: boolean = false;
+    public captcha: boolean = false;
 
-    private wrongCaptcha: boolean = false;
+    public wrongCaptcha: boolean = false;
     
     constructor(
-        private fetcherService: FetcherService,
-        private dictionary: Dictionary
+        public fetcherService: FetcherService,
+        public dictionary: Dictionary
     ) {}
 
     ngOnInit() {
@@ -54,7 +53,7 @@ export class FormComponent implements OnInit {
         this.formSubmit.call(this.formOptions['owner'], formData);
     }
 
-    private resolvedCaptcha(value) {
+    public resolvedCaptcha(value) {
         if((value !== null) && (value.length > 0)) {
             this.captcha = true;
         } else {

@@ -1,2 +1,2 @@
 # Description
-Angular singe page application admin panel
+Angular singe page application
