@@ -1,0 +1,17 @@
+{
+    "name": "jilanov-front-end",
+    "description": "Azure deployment for staging",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "author": "DJilanov",
+    "engines": {
+        "node": "8.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "4.16.2"
+    }
+}
