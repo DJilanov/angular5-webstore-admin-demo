@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" target="_blank" href="https://github.com/DJilanov/Angular5-event-driven-boilerplate">
+        <i class="fa fa-1x fa-github" aria-hidden="true"></i>
+        <span translate>Angular 5 Boilerplate</span>
+    </a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li (click)="makeActiveTab('home')"
+                class="nav-item">
+                <a [class.active]="activeTab === 'home'"
+                    class="nav-link" routerLink="/" translate>Home</a>
+            </li>
+            <li (click)="makeActiveTab('docs')"
+                class="nav-item">
+                <a [class.active]="activeTab === 'docs'"
+                    class="nav-link" routerLink="/docs" translate>Docs</a>
+            </li>
+            <li (click)="makeActiveTab('style-guide-and-suggestions')"
+                class="nav-item">
+                <a [class.active]="activeTab === 'style-guide-and-suggestions'"
+                    class="nav-link" routerLink="/style-guide-and-suggestions" translate>Pro tips</a>
+            </li>
+            <li (click)="makeActiveTab('about-me')"
+                class="nav-item">
+                <a [class.active]="activeTab === 'about-me'"
+                    class="nav-link" routerLink="/about-me" translate>About me</a>
+            </li>
+        </ul>
+        <form *ngIf="search"
+            class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" translate>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" translate>Search</button>
+        </form>
+        <ul class="navbar-nav mr-auto">
+            <li (click)="makeActiveTab('home')"
+                class="nav-item">
+                <a [class.active]="activeTab === 'home'"
+                    class="nav-link" routerLink="/" translate>Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
