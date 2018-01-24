@@ -1,11 +1,12 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { FetcherService } from '../../services/fetcher.service';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { CategoriesService } from '../../services/categories.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
-import { ErrorHandlerService } from '../../services/error.handler.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
     selector: 'navigation',
@@ -21,16 +22,15 @@ export class NavigationComponent {
 
     constructor(
         public router: Router,
-        public dictionary: Dictionary,
         public authService: AuthService,
-        public fetcherService: FetcherService,
+        public backendService: BackendService,
+        public eventBusService: EventBusService,
         public categoriesService: CategoriesService,
-        public eventEmiterService: EventEmiterService,
         public errorHandlerService: ErrorHandlerService
     ) {
         this.categories = categoriesService.getCategories();
         this.categoriesClone = JSON.parse(JSON.stringify(this.categories));
-        this.eventEmiterService.dataFetched.subscribe(data => this.onFetchedData(data));
+        this.eventBusService.dataFetched.subscribe(data => this.onFetchedData(data));
     };    
     
     public onFetchedData(data) {
@@ -65,12 +65,12 @@ export class NavigationComponent {
             array[array.length - 1]['shownOnNav'] = "false";
             array[array.length - 1]['zIndex'] = array.length - 1;
         }
-        this.fetcherService.updateCategories({
+        this.backendService.updateCategories({
             categories: array,
             loginData: this.authService.getLoginData()
         }).subscribe(
             data => this.success(data.json()),
-            err => this.errorHandlerService.handleError(err)
+            err => this.errorHandlerService.handleRequestError(err)
         );
     }
 

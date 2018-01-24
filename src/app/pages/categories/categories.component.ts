@@ -1,11 +1,14 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { FetcherService } from '../../services/fetcher.service';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { CategoriesService } from '../../services/categories.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
-import { ErrorHandlerService } from '../../services/error.handler.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { CategoriesService } from '../../services/categories/categories.service';
+
+import { CategoryModel } from '../../services/categories/category.model';
 
 @Component({
     selector: 'categories',
@@ -19,86 +22,53 @@ export class CategoriesComponent {
 
     constructor(
         public router: Router,
-        public dictionary: Dictionary,
         public authService: AuthService,
-        public fetcherService: FetcherService,
+        public backendService: BackendService,
         public categoriesService: CategoriesService,
-        public eventEmiterService: EventEmiterService,
+        public eventBusService: EventBusService,
         public errorHandlerService: ErrorHandlerService
     ) {
       this.categories = categoriesService.getCategories();
-      // on categories update we update the local array
-      this.eventEmiterService.dataFetched.subscribe(data => this.onFetchedData(data));
+      this.eventBusService.categoriesUpdate.subscribe(categories => this.updateCategories(categories));
     };    
     
-    public onFetchedData(data) {
-      this.categories = data.categories;
+    public updateCategories(eventData) {
+      this.categories = eventData.categories;
     }
 
     public addCategory() {
-      this.categories[this.categories.length] = {
-          "title": {
-              "bg": "",
-              "en": ""
-          },
-          "name": {
-              "bg": "",
-              "en": ""
-          },
-          "products": "",
-          "zIndex": "4",
-          "shownOnNav": "true",
-          "link": "",
-          "new": true
-      }
+      this.categories[this.categories.length] = new CategoryModel();
     }
 
     public create(category) {
-        this.fetcherService.createCategories({
+        this.backendService.createCategories({
             category: category,
             loginData: this.authService.getLoginData()
         }).subscribe(
-            data => this.successUpdate(data.json(), 'create'),
-            err => this.errorHandlerService.handleError(err)
+            data => this.categoriesService.addCategory(data.json()),
+            err => this.errorHandlerService.handleRequestError(err)
         );
     }
 
     public update(category) {
-        this.fetcherService.updateCategories({
+        this.backendService.updateCategories({
             categories: [category],
             loginData: this.authService.getLoginData()
         }).subscribe(
-            data => this.successUpdate(data.json(), 'update'),
-            err => this.errorHandlerService.handleError(err)
+            data => this.categoriesService.updateCategory(data.json()),
+            err => this.errorHandlerService.handleRequestError(err)
         );
     }
 
     public delete(category) {
         let loginData = this.authService.getLoginData();
-        this.fetcherService.deleteCategory({
+        this.backendService.deleteCategory({
             category: category,
             username: loginData['username'],
             password: loginData['password']
         }).subscribe(
-            data => this.successUpdate(data.json(), 'delete'),
-            err => this.errorHandlerService.handleError(err)
+            data => this.categoriesService.removeCategory(data.json()),
+            err => this.errorHandlerService.handleRequestError(err)
         );
-    }
-
-    public successUpdate(data, action) {
-        if(action == 'create') {
-            for(let categoriesCounter = 0; categoriesCounter < this.categories.length; categoriesCounter++) {
-                if(this.categories[categoriesCounter]['products'] == data.response.products) {
-                    this.categories[categoriesCounter]['new'] = false;
-                }
-            }
-        } else if(action == 'delete') {
-             for(let categoriesCounter = 0; categoriesCounter < this.categories.length; categoriesCounter++) {
-                if(this.categories[categoriesCounter]['products'] == data.response.products) {
-                    this.categories.splice(categoriesCounter, 1);
-                    this.categoriesService.removeCategory(data.response['_id']);
-                }
-            }
-        }
     }
 }

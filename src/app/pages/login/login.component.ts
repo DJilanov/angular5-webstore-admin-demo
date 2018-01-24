@@ -1,10 +1,12 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { FetcherService } from '../../services/fetcher.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
-import { ErrorHandlerService } from '../../services/error.handler.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
     selector: 'login',
@@ -18,10 +20,9 @@ export class LoginComponent {
 
     constructor(
 		public router: Router,
-        public dictionary: Dictionary,
         public authService: AuthService,
-        public fetcherService: FetcherService,
-        public eventEmiterService: EventEmiterService,
+        public backendService: BackendService,
+        public eventBusService: EventBusService,
         public errorHandlerService: ErrorHandlerService
     ) {
         let data = this.authService.getLoginData();
@@ -31,12 +32,12 @@ export class LoginComponent {
     }
 
     public tryLogin() {
-        this.fetcherService.adminLogin({
+        this.backendService.adminLogin({
             username: this.username,
             password: this.password
         }).subscribe(
             data => this.login(data),
-            err => this.errorHandlerService.handleError(err)
+            err => this.errorHandlerService.handleRequestError(err)
         );
     }
 
@@ -45,7 +46,7 @@ export class LoginComponent {
             username: this.username,
             password: this.password
         });
-        this.eventEmiterService.emitLoggedIn({});
+        this.eventBusService.emitLoggedIn({});
         this.router.navigate(['/home']);
     }
 }

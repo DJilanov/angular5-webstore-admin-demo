@@ -1,10 +1,12 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { FetcherService } from '../../services/fetcher.service';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
-import { ErrorHandlerService } from '../../services/error.handler.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { MessagesService } from '../../services/messages/messages.service';
 
 @Component({
     selector: 'messages',
@@ -18,44 +20,29 @@ export class MessagesComponent {
 
     constructor(
         public router: Router,
-        public dictionary: Dictionary,
         public authService: AuthService,
-        public fetcherService: FetcherService,
-        public eventEmiterService: EventEmiterService,
+        public backendService: BackendService,
+        public eventBusService: EventBusService,
+        public messagesService: MessagesService,
         public errorHandlerService: ErrorHandlerService
     ) {
-      this.eventEmiterService.loggedIn.subscribe(data => this.loggedIn(data));
-      // todo: remove it on prod
-      this.loggedIn({});
-    };    
-
-    public loggedIn(data) {
-      this.fetcherService.getMessages(this.authService.getLoginData()).subscribe(
-          data => this.onFetchedMessages(data),
-          err => this.errorHandlerService.handleError(err)
-      );
+        this.messages = messagesService.getMessages();
+        this.eventBusService.messagesUpdate.subscribe(messages => this.updateMessages(messages));
+    };
+    
+    public updateMessages(eventData) {
+      this.messages = eventData.messages;
     }
     
-    public onFetchedMessages(data) {
-      this.messages = data.json();
-    }
-
-    public removeMessage(response) {
-      var message = response.response;
-      for(var messageCounter = 0; messageCounter < this.messages.length; messageCounter++) {
-        if(this.messages[messageCounter]['_id'] == message._id) {
-          this.messages.splice(messageCounter, 1);
-          break;
-        }
-      }
-    }
-
-    public deleteMessage(message) {
-      let loginData = this.authService.getLoginData();
-      let body = Object.assign(loginData, {'message': message});
-      this.fetcherService.deleteMessage(body).subscribe(
-          data => this.removeMessage(data.json()),
-          err => this.errorHandlerService.handleError(err)
-      );
+    public delete(message) {
+        let loginData = this.authService.getLoginData();
+        this.backendService.deleteMessage({
+            message: message,
+            username: loginData['username'],
+            password: loginData['password']
+        }).subscribe(
+            data => this.messagesService.removeMessage(data.json()),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
     }
 }

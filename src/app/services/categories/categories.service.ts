@@ -35,7 +35,7 @@ export class CategoriesService {
     }
     
     /**
-    * @getCategoryByLink set all categories
+    * @getCategoryByLink 
     */
     public getCategoryByLink(link) {
         for(var categoryCounter = 0; categoryCounter < this.categoryArray.length; categoryCounter++) {
@@ -44,14 +44,49 @@ export class CategoriesService {
             }
         }
     }
-
-    public removeCategory(id) {
+    
+    /**
+    * @getCategoryById 
+    */
+    public getCategoryById(id) {
         for(var categoryCounter = 0; categoryCounter < this.categoryArray.length; categoryCounter++) {
-            if(this.categoryArray[categoryCounter]['_id'] == id) {
-                this.categoryArray.splice(categoryCounter, 1);
-        // fire event and upadte everywhere in the admin
+            if(this.categoryArray[categoryCounter]['id'] === id) {
+                return this.categoryArray[categoryCounter];
+            }
+        }
+    }
+
+    public addCategory(category) {
+        this.categoryArray.push(category);
+        this.emitCategories();
+    }
+    
+    public updateCategory(category) {
+        for(let categoriesCounter = 0; categoriesCounter < this.categoryArray.length; categoriesCounter++) {
+            if(this.categoryArray[categoriesCounter]['id'] == category.id) {
+                this.categoryArray[categoriesCounter] = category;
                 return;
             }
         }
+        this.emitCategories();
+    }
+
+    public removeCategory(category) {
+        for(var categoryCounter = 0; categoryCounter < this.categoryArray.length; categoryCounter++) {
+            if(this.categoryArray[categoryCounter]['_id'] == category.id) {
+                this.categoryArray.splice(categoryCounter, 1);
+                return;
+            }
+        }
+        this.emitCategories();
+    }
+    
+    /**
+    * @emitCategories emit the categories to the components
+    */
+    public emitCategories() {
+        this.eventBusService.emitCategoriesUpdate({
+            categories: this.categoryArray
+        });
     }
 }
