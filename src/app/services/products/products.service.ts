@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-import { Config } from '../config';
+import { ProductModel } from './product.model';
 
 @Injectable()
 
@@ -11,16 +11,16 @@ export class ProductsService {
     // will be used when we have live update of products and everything is dynamic
     public productsUpdate: EventEmitter<any>;
 
-    public products = Array<Object>();
+    public products:ProductModel[];
     /**
     * @getProducts get all products
-    * @return {Array} all drivers
+    * @return {Array} all products
     */
     public getProducts() {
         return this.products;
     }
 
-    public setProducts(products) {
+    public setProducts(products: ProductModel[]) {
         this.products = products;
         this.productsUpdate.emit(products);
     }

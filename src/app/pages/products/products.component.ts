@@ -1,9 +1,14 @@
 import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { ProductsService } from '../../services/products.service';
-import { CategoriesService } from '../../services/categories.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { UtilsService } from '../../services/utils/utils.service';
+import { ProductsService } from '../../services/products/products.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
     selector: 'products',
@@ -18,16 +23,16 @@ export class ProductsComponent {
 
     constructor(
         public router: Router,
-        public dictionary: Dictionary,
         public productsService: ProductsService,
         public categoriesService: CategoriesService,
-        public eventEmiterService: EventEmiterService
+        public eventBusService: EventBusService,
+        public errorHandlerService: ErrorHandlerService,
     ) {
       this.products = productsService.getProducts();
       this.categories = categoriesService.getCategories();
       // on categories update we update the local array
-      this.eventEmiterService.dataFetched.subscribe(data => this.onFetchedData(data));
-      this.eventEmiterService.changedProduct.subscribe(data => this.onChangedProduct(data));
+      this.eventBusService.dataFetched.subscribe(data => this.onFetchedData(data));
+      this.eventBusService.changedProduct.subscribe(data => this.onChangedProduct(data));
     };    
 
     public onChangedProduct(product) {

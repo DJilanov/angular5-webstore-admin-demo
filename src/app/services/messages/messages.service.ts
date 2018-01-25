@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { MessageModel } from './message.model';
+
 import { EventBusService } from '../../core/event-bus/event-bus.service';
 
 @Injectable()
@@ -30,8 +32,8 @@ export class MessagesService {
     /**
     * @setMessages set all messages
     */
-    public setMessages(categories) {
-        this.messagesArray = categories;
+    public setMessages(messages: MessageModel[]) {
+        this.messagesArray = messages;
     }
 
     /**

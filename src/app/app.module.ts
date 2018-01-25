@@ -15,9 +15,6 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { TranslateService } from './shared/translation/services/translate.service';
-import { TranslateDirective } from './shared/translation/directives/translate.directive';
-
 @NgModule({
 	declarations: [
 		AppComponent

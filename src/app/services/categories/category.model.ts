@@ -1,27 +1,27 @@
+import { LanguageModel } from '../utils/language.model';
+import { ProductModel } from '../products/product.model';
+
 export class CategoryModel {
-	title: {
-		bg: string,
-		en: string
-	}
-	name: {
-		bg: string,
-		en: string
-	}
-	products: Array<any>;
+	id: string;
+	title: LanguageModel;
+	name: LanguageModel;
+	products: Array<ProductModel>;
 	zIndex: string;
 	shownOnNav: boolean;
 	link: string;
 	isNew: boolean;
 
 	constructor(
-		title?: any,
-		name?: any,
-		products?: Array<any>,
+		id?: string,
+		title?: LanguageModel,
+		name?: LanguageModel,
+		products?: Array<ProductModel>,
 		zIndex?: string,
 		shownOnNav?: boolean,
 		link?: string,
 		isNew?: boolean,
 	) {
+		this.id = id;
 		this.title = title;
 		this.name = name;
 		this.products = products;

@@ -6,6 +6,7 @@ import { EventBusService } from '../../core/event-bus/event-bus.service';
 import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
 
 import { AuthService } from '../../services/auth/auth.service';
+import { UtilsService } from '../../services/utils/utils.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
@@ -23,19 +24,20 @@ export class NavigationComponent {
     constructor(
         public router: Router,
         public authService: AuthService,
+        public utilsService: UtilsService,
         public backendService: BackendService,
         public eventBusService: EventBusService,
         public categoriesService: CategoriesService,
         public errorHandlerService: ErrorHandlerService
     ) {
         this.categories = categoriesService.getCategories();
-        this.categoriesClone = JSON.parse(JSON.stringify(this.categories));
-        this.eventBusService.dataFetched.subscribe(data => this.onFetchedData(data));
+        this.categoriesClone = this.utilsService.cloneObject(this.categories);
+        this.eventBusService.categoriesUpdate.subscribe(categories => this.onCategoriesUpdate(categories));
     };    
     
-    public onFetchedData(data) {
-        this.categories = data.categories;
-        this.categoriesClone = JSON.parse(JSON.stringify(data.categories));
+    public onCategoriesUpdate(eventData) {
+        this.categories = eventData.categories;
+        this.categoriesClone = this.utilsService.cloneObject(this.categories);
     }
 
     public onCategoryDrop(element) {

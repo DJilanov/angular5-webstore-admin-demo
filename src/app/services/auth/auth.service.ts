@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { UserModel } from './user.model';
+
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+
 @Injectable()
 
 /**
@@ -7,17 +11,16 @@ import { Injectable } from '@angular/core';
  */
 export class AuthService {
 
-    public userData: Object = {
-        username: '',
-        password: ''
-    };
+    public userData: UserModel = new UserModel();
 
-    constructor() {
-        
+    constructor(
+        private eventBusService: EventBusService
+    ) {
+        eventBusService.loggedIn.subscribe((eventData) => this.setLoginData(eventData.userData));
     }
 
-    public setLoginData(data) {
-        this.userData = data;
+    public setLoginData(userData: UserModel) {
+        this.userData = userData;
     }
 
     public getLoginData() {

@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { CategoryModel } from './category.model';
+
 import { EventBusService } from '../../core/event-bus/event-bus.service';
 
 @Injectable()
@@ -11,7 +13,7 @@ export class CategoriesService {
     /**
     * @info: Contains all of the categories
     */
-    public categoryArray = Array<Object>();
+    public categoryArray: CategoryModel[];
     
     constructor(
         private eventBusService: EventBusService
@@ -30,7 +32,7 @@ export class CategoriesService {
     /**
     * @setCategories set all categories
     */
-    public setCategories(categories) {
+    public setCategories(categories: CategoryModel[]) {
         this.categoryArray = categories;
     }
     
