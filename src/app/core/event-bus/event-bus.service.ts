@@ -8,8 +8,10 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class EventBusService {
 
     public loggedIn: EventEmitter<any>;
-    public dataFetched: EventEmitter<any>;
+	public translate: EventEmitter<any>;
+	public changeRoute: EventEmitter<any>;
 	public requestError: EventEmitter<any>;
+	public changeLanguage: EventEmitter<any>;
 	public productsUpdate: EventEmitter<any>;
 	public messagesUpdate: EventEmitter<any>;
 	public categoriesUpdate: EventEmitter<any>;
@@ -17,41 +19,51 @@ export class EventBusService {
 	public changeSharedOptions: EventEmitter<any>;
 
 	constructor() {
-        this.loggedIn = new EventEmitter();
-        this.dataFetched = new EventEmitter();
+		this.loggedIn = new EventEmitter();
+		this.translate = new EventEmitter();
+		this.changeRoute = new EventEmitter();
 		this.requestError = new EventEmitter();
+		this.changeLanguage = new EventEmitter();
 		this.productsUpdate = new EventEmitter();
 		this.messagesUpdate = new EventEmitter();
 		this.categoriesUpdate = new EventEmitter();
 
 		this.changeSharedOptions = new EventEmitter();		
 	}
-	
-	public emitFetchedData(data) {
-		this.dataFetched.emit(data);
-	}
 
 	public emitLoggedIn(loginData) {
 		this.loggedIn.emit(loginData);
+	}
+	
+	public emitTranslate(eventData) {
+		this.translate.emit(eventData);
+	}
+	
+	public emitChangeRoute(data) {
+		this.changeRoute.emit(data);
 	}
 
 	public emitRequestError(data) {
 		this.requestError.emit(data);
 	}
 	
-	public emitProductsUpdate(data) {
-		this.productsUpdate.emit(data);
+	public emitChangeLanguage(language) {
+		this.changeLanguage.emit(language);
 	}
 	
-	public emitMessagesUpdate(data) {
-		this.messagesUpdate.emit(data);
+	public emitProductsUpdate(products) {
+		this.productsUpdate.emit(products);
 	}
 	
-	public emitCategoriesUpdate(data) {
-		this.categoriesUpdate.emit(data);
+	public emitMessagesUpdate(messages) {
+		this.messagesUpdate.emit(messages);
 	}
 	
-	public emitChangeSharedOptions(data) {
-		this.changeSharedOptions.emit(data);
+	public emitCategoriesUpdate(categories) {
+		this.categoriesUpdate.emit(categories);
+	}
+	
+	public emitChangeSharedOptions(sharedOptions) {
+		this.changeSharedOptions.emit(sharedOptions);
 	}
 }

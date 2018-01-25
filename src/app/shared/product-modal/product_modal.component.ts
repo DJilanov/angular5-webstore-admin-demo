@@ -10,7 +10,7 @@ import { ErrorHandlerService } from '../../services/error.handler.service';
 
 @Component({
     selector: 'product-modal',
-    styleUrls: ['./product_modal.component.css'],
+    styleUrls: ['./product_modal.component.scss'],
     templateUrl: './product_modal.component.html'
 })
 

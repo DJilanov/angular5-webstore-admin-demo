@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import { Dictionary } from './dictionary/dictionary.service';
 import { FetcherService } from './services/fetcher.service';
 import { CategoriesService } from './services/categories.service';
@@ -32,6 +32,13 @@ export class AppComponent {
             data => this.setData(data),
             err => this.errorHandlerService.handleError(err)
         );
+		this.router.events.subscribe(
+			(event) => {
+				if(event instanceof NavigationStart) {
+					this.eventBusService.emitChangeRoute(event.url);
+				}
+			}
+		);
     };
 
     public setData(result) {
