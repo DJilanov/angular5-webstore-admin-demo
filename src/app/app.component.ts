@@ -13,7 +13,7 @@ import { CategoriesService } from './services/categories/categories.service';
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styles: [ './app.component.scss' ]
+    styleUrls: [ './app.component.scss' ]
 })
 
 export class AppComponent {
@@ -60,7 +60,7 @@ export class AppComponent {
         );
     }
 
-    private setData(result) {        
+    private setData(result) {
         this.productsService.setProducts(result.products);
         this.messagesService.setMessages(result.messages);
         this.categoriesService.setCategories(result.categories);

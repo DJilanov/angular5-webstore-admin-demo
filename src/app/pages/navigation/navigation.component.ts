@@ -9,6 +9,8 @@ import { AuthService } from '../../services/auth/auth.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
+import { CategoryModel } from '../../services/categories/category.model';
+
 @Component({
     selector: 'navigation',
     styleUrls: ['./navigation.component.scss'],
@@ -17,9 +19,9 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 export class NavigationComponent {
 
-    public categories: Array<Object> = [];
-    public categoriesClone: Array<Object> = [];
-    public navItems: Array<Object> = [];
+    public categories: Array<CategoryModel>;
+    public categoriesClone: Array<CategoryModel>;
+    public navItems: Array<CategoryModel>;
 
     constructor(
         public router: Router,

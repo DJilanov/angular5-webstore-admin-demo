@@ -3,12 +3,16 @@ import { Router } from '@angular/router';
 
 import { BackendService } from '../../core/backend/backend.service';
 import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { TranslateService } from '../../shared/translation/services/translate.service';
 import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { ProductsService } from '../../services/products/products.service';
 import { CategoriesService } from '../../services/categories/categories.service';
+
+import { ProductModel } from '../../services/products/product.model';
+import { CategoryModel } from '../../services/categories/category.model';
 
 @Component({
     selector: 'products',
@@ -18,21 +22,27 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 export class ProductsComponent {
 
-    public products: Array<Object> = [];
-    public categories: Array<Object> = [];
+    public products: Array<ProductModel>;
+    public categories: Array<CategoryModel>;
+    public searchData: ProductModel;
 
     constructor(
-        public router: Router,
-        public productsService: ProductsService,
-        public categoriesService: CategoriesService,
-        public eventBusService: EventBusService,
-        public errorHandlerService: ErrorHandlerService,
+        private router: Router,
+        private productsService: ProductsService,
+        private eventBusService: EventBusService,
+        private translateService: TranslateService,
+        private categoriesService: CategoriesService,
+        private errorHandlerService: ErrorHandlerService,
     ) {
       this.products = productsService.getProducts();
       this.categories = categoriesService.getCategories();
       this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
       this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
-    };    
+    };
+
+    public getLanguage() {
+      return this.translateService.getLanguage();
+    }
 
     public onChangedProduct(product) {
       for(var productsCounter = 0; productsCounter < this.products.length; productsCounter++) {

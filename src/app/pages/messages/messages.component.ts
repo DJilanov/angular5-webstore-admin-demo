@@ -8,6 +8,8 @@ import { ErrorHandlerService } from '../../core/error-handler/error-handler.serv
 import { AuthService } from '../../services/auth/auth.service';
 import { MessagesService } from '../../services/messages/messages.service';
 
+import { MessageModel } from '../../services/messages/message.model';
+
 @Component({
     selector: 'messages',
     styleUrls: ['./messages.component.scss'],
@@ -16,7 +18,7 @@ import { MessagesService } from '../../services/messages/messages.service';
 
 export class MessagesComponent {
 
-    public messages: Array<Object> = [];
+    public messages: Array<MessageModel>;
 
     constructor(
         public router: Router,

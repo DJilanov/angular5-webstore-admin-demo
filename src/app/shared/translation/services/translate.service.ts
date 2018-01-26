@@ -5,7 +5,7 @@ import { EventBusService } from '../../../core/event-bus/event-bus.service';
 
 declare function require(url: string);
 
-const defaultLanguage = 'EN';
+const defaultLanguage = 'en';
 const english = require('../languages/lang-en.json');
 const bulgarian = require('../languages/lang-bg.json');
 
@@ -17,7 +17,11 @@ export class TranslateService {
         private eventBusService: EventBusService
     ) {
         this.language = defaultLanguage
-	}
+    }
+    
+    public getLanguage() {
+        return this.language;
+    }
 
     public changeLanguage(eventData) {
         this.language = eventData.language || defaultLanguage;
@@ -25,10 +29,10 @@ export class TranslateService {
 
     public translate(text) {
         switch (this.language) {
-            case 'EN':
+            case 'en':
                 text = english[text] || text;
                 break;
-            case 'BG':
+            case 'bg':
                 text = bulgarian[text] || text;
                 break;
             default:

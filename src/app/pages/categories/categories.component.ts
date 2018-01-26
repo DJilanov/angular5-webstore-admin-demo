@@ -18,7 +18,7 @@ import { CategoryModel } from '../../services/categories/category.model';
 
 export class CategoriesComponent {
 
-    public categories: Array<Object>;
+    public categories: Array<CategoryModel>;
 
     constructor(
         public router: Router,

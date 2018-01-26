@@ -1,11 +1,5 @@
-<div *ngIf="this.options.header"
-  class="header">
-  <app-header></app-header>
-</div>
-<div class="body">
-  <router-outlet></router-outlet>
-</div>
-<div *ngIf="this.options.footer"
-  class="footer">
-  <app-footer></app-footer>
-</div>
+<app-header *ngIf="this.options.header"></app-header>
+
+<router-outlet></router-outlet>
+
+<app-footer *ngIf="this.options.footer"></app-footer>

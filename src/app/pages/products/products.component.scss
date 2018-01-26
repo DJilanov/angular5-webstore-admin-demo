@@ -1,11 +1,5 @@
-.product {
-    cursor: pointer;
-}
+@import '../../../variables';
 
-.add-new {
-    font-size: 100px;
-}
-
-.category-container {
-    margin-bottom: 50px;
+:host {
+    flex: 1 0 auto;
 }
