@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoginGuard } from './core/login-guard/login-guard.service';
+
 // Admin Views
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -21,31 +23,36 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: 'Home'
-    }
+    },
+		canActivate: [LoginGuard]
   }, { 
     path: 'navigation', 
     component: NavigationComponent,
     data: {
       title: 'Navigation'
-    }
+    },
+		canActivate: [LoginGuard]
   }, { 
     path: 'products', 
     component: ProductsComponent,
     data: {
       title: 'Products'
-    }
+    },
+		canActivate: [LoginGuard]
   }, { 
     path: 'categories', 
     component: CategoriesComponent,
     data: {
       title: 'Categories'
-    }
+    },
+		canActivate: [LoginGuard]
   }, { 
     path: 'messages', 
     component: MessagesComponent,
     data: {
       title: 'Messages'
-    }
+    },
+		canActivate: [LoginGuard]
   }, {
     path: '**', 
     component: LoginComponent,

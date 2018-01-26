@@ -11,12 +11,12 @@ import { EventBusService } from '../../core/event-bus/event-bus.service';
  */
 export class AuthService {
 
-    public userData: UserModel = new UserModel();
+    private userData: UserModel = new UserModel();
 
     constructor(
         private eventBusService: EventBusService
     ) {
-        eventBusService.loggedIn.subscribe((eventData) => this.setLoginData(eventData.userData));
+        this.eventBusService.loggedIn.subscribe((userData) => this.setLoginData(userData));
     }
 
     public setLoginData(userData: UserModel) {

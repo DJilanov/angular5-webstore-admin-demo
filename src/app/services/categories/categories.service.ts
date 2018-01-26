@@ -13,7 +13,7 @@ export class CategoriesService {
     /**
     * @info: Contains all of the categories
     */
-    public categoryArray: CategoryModel[];
+    private categoryArray: CategoryModel[];
     
     constructor(
         private eventBusService: EventBusService

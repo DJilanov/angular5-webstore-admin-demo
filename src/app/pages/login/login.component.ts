@@ -20,8 +20,8 @@ const sharredOptions = {
 })
 
 export class LoginComponent {
-    public username: string = '';
-    public password: string = '';
+    public username: string = 'toni-website';
+    public password: string = 'toni1221';
 
     constructor(
 		public router: Router,
@@ -49,11 +49,10 @@ export class LoginComponent {
     }
 
     public login(data) {
-        this.authService.setLoginData({
+        this.eventBusService.emitLoggedIn({
             username: this.username,
             password: this.password
         });
-        this.eventBusService.emitLoggedIn({});
         this.router.navigate(['/home']);
     }
 }

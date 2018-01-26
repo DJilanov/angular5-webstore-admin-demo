@@ -13,7 +13,7 @@ export class MessagesService {
     /**
     * @info: Contains all of the categories
     */
-    public messagesArray = Array<Object>();
+    private messagesArray = Array<Object>();
     
     constructor(
         private eventBusService: EventBusService

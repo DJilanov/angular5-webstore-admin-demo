@@ -2,16 +2,22 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { ProductModel } from './product.model';
 
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+
 @Injectable()
 
 /**
  * @DriverService used on all connections to the back-end for the drivers
  */
 export class ProductsService {
-    // will be used when we have live update of products and everything is dynamic
-    public productsUpdate: EventEmitter<any>;
-
-    public products:ProductModel[];
+    
+    private products:ProductModel[];
+    
+    constructor(
+        private eventBusService: EventBusService
+    ) {
+        this.eventBusService.productsUpdate.subscribe((eventData) => this.setProducts(eventData.messages));
+    }
     /**
     * @getProducts get all products
     * @return {Array} all products
@@ -22,7 +28,6 @@ export class ProductsService {
 
     public setProducts(products: ProductModel[]) {
         this.products = products;
-        this.productsUpdate.emit(products);
     }
 
     public getProductById(id) {
@@ -71,9 +76,5 @@ export class ProductsService {
                 this.products.splice(productsCounter, 1);
             }
         }
-    }
-
-    constructor() {
-        this.productsUpdate = new EventEmitter();
     }
 }

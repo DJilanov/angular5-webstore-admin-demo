@@ -14,7 +14,7 @@ export class BackendService {
 
 	}
 
-	backendRequest(requestTarget, requestType, requestData?) {
+	backendRequest(requestType, requestTarget, requestData?) {
 		if (requestType === 'post') {
 			return this.http.post(environment.apiUrl + requestTarget, requestData);
 		} else if (requestType === 'get') {
