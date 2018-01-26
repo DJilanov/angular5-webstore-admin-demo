@@ -1,6 +1,9 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+import { DndModule } from 'ng2-dnd';
 
 import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
@@ -14,7 +17,9 @@ import { CategoriesComponent } from './categories/categories.component';
 @NgModule({
     imports: [
         RouterModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        DndModule.forRoot()
     ],
     exports: [
         HomeComponent,

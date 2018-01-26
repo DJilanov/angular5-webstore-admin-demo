@@ -8,6 +8,11 @@ import { ErrorHandlerService } from '../../core/error-handler/error-handler.serv
 import { AuthService } from '../../services/auth/auth.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
+const sharredOptions = {
+	header: false,
+	footer: false
+};
+
 @Component({
     selector: 'login',
     styleUrls: ['./login.component.scss'],
@@ -25,10 +30,12 @@ export class LoginComponent {
         public eventBusService: EventBusService,
         public errorHandlerService: ErrorHandlerService
     ) {
-        let data = this.authService.getLoginData();
-        if(data['username']) {
-            this.router.navigate(['/home']);
-        }
+        // TODO: Add correct remember me
+        // let data = this.authService.getLoginData();
+        // if(data['username']) {
+        //     this.router.navigate(['/home']);
+        // }
+		this.eventBusService.emitChangeSharedOptions(sharredOptions);
     }
 
     public tryLogin() {

@@ -17,17 +17,26 @@ import { CategoriesService } from './services/categories/categories.service';
 })
 
 export class AppComponent {
+
+    public options = {
+        header: false,
+        footer: false
+    }
+
     constructor(
-        public router: Router,
-        public authService: AuthService,
-        public backendService: BackendService,
-        public productsService: ProductsService,
-        public messagesService: MessagesService,
-        public eventBusService: EventBusService,
-        public categoriesService: CategoriesService,
-        public errorHandlerService: ErrorHandlerService
+        private router: Router,
+        private authService: AuthService,
+        private backendService: BackendService,
+        private productsService: ProductsService,
+        private messagesService: MessagesService,
+        private eventBusService: EventBusService,
+        private categoriesService: CategoriesService,
+        private errorHandlerService: ErrorHandlerService
     ) {
         this.eventBusService.loggedIn.subscribe(data => this.onLogin(data));
+		this.eventBusService.changeSharedOptions.subscribe(
+			(options) => this.updateSharedOptions(options)
+		);
 		this.router.events.subscribe(
 			(event) => {
 				if(event instanceof NavigationStart) {
@@ -36,8 +45,13 @@ export class AppComponent {
 			}
 		);
     };
+    
+    private updateSharedOptions(options) {
+        this.options.header = options.header || false;
+        this.options.footer = options.footer || false;
+    }
 
-    public onLogin(eventData) {
+    private onLogin(eventData) {
         this.backendService.getAllData(
             this.authService.getLoginData()
         ).subscribe(
@@ -46,7 +60,7 @@ export class AppComponent {
         );
     }
 
-    public setData(result) {        
+    private setData(result) {        
         this.productsService.setProducts(result.products);
         this.messagesService.setMessages(result.messages);
         this.categoriesService.setCategories(result.categories);

@@ -8,10 +8,10 @@
       <div class="col-xs-12 col-sm-12 col-md-4 product">
         <div class="col-xs-12 product" (click)="showEditModal(productsByCategory(category)[index])">
           <div class="image-holder">
-            <image 
+            <img 
               [src]="'/img/' + productsByCategory(category)[index].main_image"
               [alt]="productsByCategory(category)[index].title"
-            ></image>
+            />
           </div>
           <div class="title">
             {{productsByCategory(category)[index].title[dictionary.language]}}
@@ -34,4 +34,4 @@
     <div class="clearfix visible-sm visible-md visible-lg"></div>
   </div>
 </div>
-<product-modal></product-modal>
+<!-- <product-modal></product-modal> -->

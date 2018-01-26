@@ -1,15 +1,11 @@
-<div 
-  [hidden]="this.products.length == 0"
-  class="col-md-12 no-paddings">
-  <!-- <side-menu class="col-md-1"></side-menu> -->
-  <div class="col-md-12 no-paddings">
-      <router-outlet></router-outlet>
-  </div>
+<div *ngIf="this.options.header"
+  class="header">
+  <app-header></app-header>
 </div>
-<div [hidden]="this.products.length > 0">
-    <div class="loading">
-        <img class="image" src="./src/img/navigation-logo.png" alt="logo">
-        <div class="loader"></div>
-        <h1 class="loader-text">{{dictionary.getTexts('loading')}}</h1>
-    </div>
+<div class="body">
+  <router-outlet></router-outlet>
+</div>
+<div *ngIf="this.options.footer"
+  class="footer">
+  <app-footer></app-footer>
 </div>

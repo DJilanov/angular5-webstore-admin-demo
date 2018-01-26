@@ -4,7 +4,7 @@
 <div *ngIf="categories.length > 0">
   <h1>Website navigation</h1>
   <h4>Drag and drop them to the navi in the order you want them to be</h4>
-  <ul class="list-group">
+  <!-- <ul class="list-group">
       <li draggable *ngFor="let item of categoriesClone"
           [dragData]="item" class="list-group-item">
           {{item.title[dictionary.language]}} 
@@ -15,9 +15,9 @@
       (onDrop)="onCategoryDrop($event)"
     >
     <a [routerLink]="['/']" class="logo pull-left">
-        <image 
+        <img 
           [src]="'./src/img/navigation-logo.png'"
-          [alt]="'logo'"></image>
+          [alt]="'logo'"/>
     </a>
     <ul class="nav navbar-nav navbar-left custom-navi">
       <li *ngFor="let category of navItems">
@@ -38,12 +38,12 @@
         <input placeholder="{{dictionary.getTexts('headerSearchFor')}}">
       </li>
       <li class="flag" (click)="changeLanguage()">
-        <image 
+        <img 
           [src]="'./src/img/' + dictionary.nextLanguage() + '.png'"
-          [alt]="dictionary.language"></image>
+          [alt]="dictionary.language"/>
       </li>
     </ul>
-  </div>
+  </div> -->
 </div>
 <div class="col-xs-12 buttons">
   <button
