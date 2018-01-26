@@ -1,37 +1,33 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
-import { Dictionary } from './dictionary/dictionary.service';
-import { FetcherService } from './services/fetcher.service';
-import { CategoriesService } from './services/categories.service';
-import { ProductsService } from './services/products.service';
-import { EventEmiterService } from './services/event.emiter.service';
-import { ErrorHandlerService } from './services/error.handler.service';
+
+import { BackendService } from './core/backend/backend.service';
+import { EventBusService } from './core/event-bus/event-bus.service';
+import { ErrorHandlerService } from './core/error-handler/error-handler.service';
+
+import { AuthService } from './services/auth/auth.service';
+import { ProductsService } from './services/products/products.service';
+import { MessagesService } from './services/messages/messages.service';
+import { CategoriesService } from './services/categories/categories.service';
 
 @Component({
     selector: 'app',
     templateUrl: './app.component.html',
-    styles: [ require('./sass/style.scss') ]
+    styles: [ './app.component.scss' ]
 })
 
 export class AppComponent {
-
-    public products: Array<Object> = [];
-    public categories: Array<Object>;
-    public location: string;
-
     constructor(
         public router: Router,
-        public fetcher: FetcherService,
-        public dictionary: Dictionary,
+        public authService: AuthService,
+        public backendService: BackendService,
         public productsService: ProductsService,
+        public messagesService: MessagesService,
+        public eventBusService: EventBusService,
         public categoriesService: CategoriesService,
-        public eventEmiterService: EventEmiterService,
         public errorHandlerService: ErrorHandlerService
     ) {
-        fetcher.getProductsAndCategories().subscribe(
-            data => this.setData(data),
-            err => this.errorHandlerService.handleError(err)
-        );
+        this.eventBusService.loggedIn.subscribe(data => this.onLogin(data));
 		this.router.events.subscribe(
 			(event) => {
 				if(event instanceof NavigationStart) {
@@ -41,31 +37,18 @@ export class AppComponent {
 		);
     };
 
-    public setData(result) {
-        var response = {
-            products: [],
-            categories: []
-        };
-        // if it comes from the back-end translate it, else it is cached version
-        if(result.json) {
-            response = result.json();
-        } else {
-            response = result;
-        }
-        
-        this.setProducts(response.products);
-        this.setCategories(response.categories);
-        this.eventEmiterService.emitFetchedData(response);
+    public onLogin(eventData) {
+        this.backendService.getAllData(
+            this.authService.getLoginData()
+        ).subscribe(
+            data => this.setData(data.json()),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
     }
 
-    public setProducts(result) {
-        this.products = result;
-        this.productsService.setProducts(this.products);
-    }
-
-    public setCategories(result) {
-        this.categories = result;
-        this.categoriesService.setCategories(this.categories);
-
+    public setData(result) {        
+        this.productsService.setProducts(result.products);
+        this.messagesService.setMessages(result.messages);
+        this.categoriesService.setCategories(result.categories);
     }
 }

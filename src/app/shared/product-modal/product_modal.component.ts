@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { Dictionary } from '../../dictionary/dictionary.service';
-import { FetcherService } from '../../services/fetcher.service';
-import { ProductsService } from '../../services/products.service';
-import { CategoriesService } from '../../services/categories.service';
-import { EventEmiterService } from '../../services/event.emiter.service';
-import { ErrorHandlerService } from '../../services/error.handler.service';
+
+import { BackendService } from '../../core/backend/backend.service';
+import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
+
+import { AuthService } from '../../services/auth/auth.service';
+import { UtilsService } from '../../services/utils/utils.service';
+import { ProductsService } from '../../services/products/products.service';
+import { CategoriesService } from '../../services/categories/categories.service';
 
 @Component({
     selector: 'product-modal',
@@ -30,19 +32,18 @@ export class ProductModalComponent {
     @ViewChild('productModal') public productModal;
 
     constructor(
-        public dictionary: Dictionary,
         public authService: AuthService,
-        public fetcherService: FetcherService,
+        public backendService: BackendService,
         public productsService: ProductsService,
         public categoriesService: CategoriesService,
-        public eventEmiterService: EventEmiterService,
+        public eventBusService: EventBusService,
         public errorHandlerService: ErrorHandlerService
     ) {
         this.buildReactiveForm(this.formOptions);
         this.categories = this.categoriesService.getCategories();
-        this.eventEmiterService.dataFetched.subscribe(data => this.onFetchedData(data));
-        this.eventEmiterService.hideProductModal.subscribe(options => this.hideProductModal());
-        this.eventEmiterService.showProductModal.subscribe(options => this.showProductModal(options));
+        // this.EventBusService.dataFetched.subscribe(data => this.onFetchedData(data));
+        // this.EventBusService.hideProductModal.subscribe(options => this.hideProductModal());
+        // this.EventBusService.showProductModal.subscribe(options => this.showProductModal(options));
     }
 
     /**
@@ -160,19 +161,19 @@ export class ProductModalComponent {
         formData.append('body', JSON.stringify(body));
 
         if(action == 'create') {
-            this.fetcherService.createProduct(formData).subscribe(
+            this.backendService.createProduct(formData).subscribe(
                 data => this.successUpdate(data.json(), action),
-                err => this.errorHandlerService.handleError(err)
+                err => this.errorHandlerService.handleRequestError(err)
             );
         } else if(action == 'edit') {
-            this.fetcherService.updateProduct(formData).subscribe(
+            this.backendService.updateProduct(formData).subscribe(
                 data => this.successUpdate(data.json(), ''),
-                err => this.errorHandlerService.handleError(err)
+                err => this.errorHandlerService.handleRequestError(err)
             );
         } else if(action == 'delete') {
-            this.fetcherService.deleteProduct(body).subscribe(
+            this.backendService.deleteProduct(body).subscribe(
                 data => this.successUpdate(data.json(), action),
-                err => this.errorHandlerService.handleError(err)
+                err => this.errorHandlerService.handleRequestError(err)
             );
         } 
         this.submited = true;
@@ -192,7 +193,7 @@ export class ProductModalComponent {
         } else if(action == 'delete') {
             this.productsService.removeProduct(data.response['_id']);
         }
-        this.eventEmiterService.emitChangedProduct(data);
+        // this.eventBusService.emitChangedProduct(data);
         this.enableButtons();
         this.hideProductModal();
     }

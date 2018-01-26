@@ -12,7 +12,7 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 @Component({
     selector: 'products',
-    styleUrls: ['./products.component.css'],
+    styleUrls: ['./products.component.scss'],
     templateUrl: './products.component.html'
 })
 
@@ -30,9 +30,8 @@ export class ProductsComponent {
     ) {
       this.products = productsService.getProducts();
       this.categories = categoriesService.getCategories();
-      // on categories update we update the local array
-      this.eventBusService.dataFetched.subscribe(data => this.onFetchedData(data));
-      this.eventBusService.changedProduct.subscribe(data => this.onChangedProduct(data));
+      this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
+      this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
     };    
 
     public onChangedProduct(product) {
@@ -53,56 +52,56 @@ export class ProductsComponent {
     }
 
     public showEditModal(product) {
-      this.eventEmiterService.emitShowProductModal({
-          'product': product,
-          'action': 'edit',
-          'title':'editProduct', 
-          "btnText": "editProduct"
-      });
+    //   this.eventBusService.emitShowProductModal({
+    //       'product': product,
+    //       'action': 'edit',
+    //       'title':'editProduct', 
+    //       "btnText": "editProduct"
+    //   });
     }
 
     public showAddNewModal() {
-      this.eventEmiterService.emitShowProductModal({
-          'product': {
-            "category": "",
-            "title": {
-                "bg": "",
-                "en": ""
-            },
-            "description": {
-                "bg": "",
-                "en": ""
-            },
-            "more_info": {
-                "bg": "",
-                "en": ""
-            },
-            "more_details": {
-                "bg": "",
-                "en": ""
-            },
-            "params": {
-                "bg": [],
-                "en": []
-            },
-            "new_price": "",
-            "old_price": "",
-            "daily_offer": false,
-            "zIndex": 0,
-            "shown": true,
-            "count": 0,
+    //   this.eventBusService.emitShowProductModal({
+    //       'product': {
+    //         "category": "",
+    //         "title": {
+    //             "bg": "",
+    //             "en": ""
+    //         },
+    //         "description": {
+    //             "bg": "",
+    //             "en": ""
+    //         },
+    //         "more_info": {
+    //             "bg": "",
+    //             "en": ""
+    //         },
+    //         "more_details": {
+    //             "bg": "",
+    //             "en": ""
+    //         },
+    //         "params": {
+    //             "bg": [],
+    //             "en": []
+    //         },
+    //         "new_price": "",
+    //         "old_price": "",
+    //         "daily_offer": false,
+    //         "zIndex": 0,
+    //         "shown": true,
+    //         "count": 0,
             
-            "rating": 4.7,
-            "is_new": true,
-            "carousel": false,
-            "link": "",
-            "make": "",
-            "main_image": "",
-            "other_images": []
-          },
-          'action': 'create',
-          'title':'createProduct', 
-          "btnText": "createProduct"
-      });
+    //         "rating": 4.7,
+    //         "is_new": true,
+    //         "carousel": false,
+    //         "link": "",
+    //         "make": "",
+    //         "main_image": "",
+    //         "other_images": []
+    //       },
+    //       'action': 'create',
+    //       'title':'createProduct', 
+    //       "btnText": "createProduct"
+    //   });
     }
 }

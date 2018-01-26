@@ -11,7 +11,7 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 @Component({
     selector: 'navigation',
-    styleUrls: ['./navigation.component.css'],
+    styleUrls: ['./navigation.component.scss'],
     templateUrl: './navigation.component.html'
 })
 

@@ -38,11 +38,12 @@ export class BackendService {
 		return this.backendRequest('get', 'products');
     }
     /**
-    * @getProducts get products and categories
-    * @return {Array} products and categories
+    * @getAllData get all data
+    * @return {Array} all data
     */
-    public getProductsAndCategories() {
-		return this.backendRequest('get', 'productsAndCategories');
+    public getAllData(body) {
+        let request = Object.assign(body, {'type': 'get'});
+        return this.backendRequest('post', 'allData', request);
     }
     /**
     * @sendMessage send message to the back-end service

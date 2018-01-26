@@ -12,7 +12,7 @@ import { CategoryModel } from '../../services/categories/category.model';
 
 @Component({
     selector: 'categories',
-    styleUrls: ['./categories.component.css'],
+    styleUrls: ['./categories.component.scss'],
     templateUrl: './categories.component.html'
 })
 

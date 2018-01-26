@@ -10,7 +10,7 @@ import { MessagesService } from '../../services/messages/messages.service';
 
 @Component({
     selector: 'messages',
-    styleUrls: ['./messages.component.css'],
+    styleUrls: ['./messages.component.scss'],
     templateUrl: './messages.component.html'
 })
 

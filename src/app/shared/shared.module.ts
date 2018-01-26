@@ -16,8 +16,6 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
     exports: [
         HeaderComponent,
         FooterComponent,
-        TranslateDirective,
-        TranslateService
     ],
     declarations: [
         HeaderComponent,

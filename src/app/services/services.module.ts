@@ -20,13 +20,7 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
         ProductsService,
         UtilsService
     ],
-    exports: [
-        AuthService,
-        CategoriesService,
-        MessagesService,
-        ProductsService,
-        UtilsService
-    ]
+    exports: []
 })
 export class ServicesModule {
 	constructor( @Optional() @SkipSelf() parentModule: CommonModule) {
