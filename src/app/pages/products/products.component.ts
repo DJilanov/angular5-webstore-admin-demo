@@ -11,6 +11,7 @@ import { UtilsService } from '../../services/utils/utils.service';
 import { ProductsService } from '../../services/products/products.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
+import { SearchModel } from './product.search.model';
 import { ProductModel } from '../../services/products/product.model';
 import { CategoryModel } from '../../services/categories/category.model';
 
@@ -24,7 +25,7 @@ export class ProductsComponent {
 
     public products: Array<ProductModel>;
     public categories: Array<CategoryModel>;
-    public searchData: ProductModel;
+    public searchData: SearchModel = new SearchModel;
 
     constructor(
         private router: Router,
@@ -40,11 +41,7 @@ export class ProductsComponent {
       this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
     };
 
-    public getLanguage() {
-      return this.translateService.getLanguage();
-    }
-
-    public onChangedProduct(product) {
+    private onChangedProduct(product) {
       for(var productsCounter = 0; productsCounter < this.products.length; productsCounter++) {
         if(this.products[productsCounter]['_id'] == product.response._id) {
           this.products[productsCounter] = product.response;
@@ -52,22 +49,21 @@ export class ProductsComponent {
       }
     }
 
-    public productsByCategory(category) {
+    private productsByCategory(category) {
         return this.productsService.getProductsByCategory(category.products);
     }
     
-    public onFetchedData(data) {
+    private onFetchedData(data) {
       this.products = data.products;
       this.categories = data.categories;
     }
+    
+    public getLanguage() {
+      return this.translateService.getLanguage();
+    }
 
-    public showEditModal(product) {
-    //   this.eventBusService.emitShowProductModal({
-    //       'product': product,
-    //       'action': 'edit',
-    //       'title':'editProduct', 
-    //       "btnText": "editProduct"
-    //   });
+    public edit() {
+
     }
 
     public showAddNewModal() {

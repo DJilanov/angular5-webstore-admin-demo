@@ -4,6 +4,7 @@ import { MessageModel } from './message.model';
 
 import { EventBusService } from '../../core/event-bus/event-bus.service';
 
+
 @Injectable()
 
 /**
@@ -13,7 +14,7 @@ export class MessagesService {
     /**
     * @info: Contains all of the categories
     */
-    private messagesArray = Array<Object>();
+    private messagesArray: Array<MessageModel>;
     
     constructor(
         private eventBusService: EventBusService
