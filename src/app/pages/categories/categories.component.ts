@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 
 import { BackendService } from '../../core/backend/backend.service';
 import { EventBusService } from '../../core/event-bus/event-bus.service';
+import { TranslateService } from '../../shared/translation/services/translate.service';
 import { ErrorHandlerService } from '../../core/error-handler/error-handler.service';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
+import { SearchModel } from './category.search.model';
 import { CategoryModel } from '../../services/categories/category.model';
 
 @Component({
@@ -19,14 +21,16 @@ import { CategoryModel } from '../../services/categories/category.model';
 export class CategoriesComponent {
 
     public categories: Array<CategoryModel>;
+    public searchData: SearchModel = new SearchModel;
 
     constructor(
-        public router: Router,
-        public authService: AuthService,
-        public backendService: BackendService,
-        public categoriesService: CategoriesService,
-        public eventBusService: EventBusService,
-        public errorHandlerService: ErrorHandlerService
+        private router: Router,
+        private authService: AuthService,
+        private backendService: BackendService,
+        private translateService: TranslateService,
+        private categoriesService: CategoriesService,
+        private eventBusService: EventBusService,
+        private errorHandlerService: ErrorHandlerService
     ) {
       this.categories = categoriesService.getCategories();
       this.eventBusService.categoriesUpdate.subscribe(categories => this.updateCategories(categories));
@@ -35,10 +39,23 @@ export class CategoriesComponent {
     public updateCategories(eventData) {
       this.categories = eventData.categories;
     }
-
-    public addCategory() {
-      this.categories[this.categories.length] = new CategoryModel();
+    
+    public getLanguage() {
+      return this.translateService.getLanguage();
     }
+
+    public filterCategories(eventData) {
+        
+    }
+
+    public edit() {
+
+    }
+    
+    public addCategory() {
+        this.categories[this.categories.length] = new CategoryModel();
+    }
+        
 
     public create(category) {
         this.backendService.createCategories({

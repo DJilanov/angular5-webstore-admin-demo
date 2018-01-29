@@ -1,5 +1,5 @@
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-striped text-center">
     <thead>
       <tr>
         <th>Title</th>
@@ -11,25 +11,25 @@
       </tr>
       <tr>
         <th>
-          <input name="title" type="text" class="form-control" [(ngModel)]="searchData.title" placeholder="Title" (change)="filterUsers($event)">
+          <input name="title" type="text" class="form-control" [(ngModel)]="searchData.title" placeholder="Title" (change)="filterProducts($event)">
         </th>
         <th>
-          <input name="category" type="text" class="form-control" [(ngModel)]="searchData.category" placeholder="Category" (change)="filterUsers($event)">
+          <input name="category" type="text" class="form-control" [(ngModel)]="searchData.category" placeholder="Category" (change)="filterProducts($event)">
         </th>
         <th>
-          <input name="newPrice" type="text" class="form-control" [(ngModel)]="searchData.newPrice" placeholder="New price" (change)="filterUsers($event)">
+          <input name="newPrice" type="text" class="form-control" [(ngModel)]="searchData.newPrice" placeholder="New price" (change)="filterProducts($event)">
         </th>
         <th>
-          <input name="count" type="text" class="form-control" [(ngModel)]="searchData.count" placeholder="Count" (change)="filterUsers($event)">
+          <input name="count" type="text" class="form-control" [(ngModel)]="searchData.count" placeholder="Count" (change)="filterProducts($event)">
         </th>
         <th>
-          <input name="isOnCarousel" type="text" class="form-control" [(ngModel)]="searchData.isOnCarousel" placeholder="Is on carousel" (change)="filterUsers($event)">
+          <input name="isOnCarousel" class="form-control" type="checkbox" [(ngModel)]="searchData.isOnCarousel" (change)="filterProducts($event)"/>
         </th>
         <th>
         </th>
       </tr>
     </thead>
-    <tbody class="text-center">
+    <tbody>
       <tr *ngFor="let product of products">
         <td>{{product.title[getLanguage()]}}</td>
         <td>{{product.category}}</td>
@@ -47,40 +47,3 @@
     </tbody>
   </table>
 </div>
-
-
-
-
-
-<!-- <div class="container" *ngIf="products.length > 0">
-  <div *ngFor="let category of categories" class="category-container">
-    <h1>{{category.title[getLanguage()]}}</h1>
-      <div *ngFor="let product of productsByCategory(category); let i = index"
-        class="col-xs-12 col-sm-12 col-md-4 product">
-        <div class="col-xs-12 product" (click)="showEditModal(productsByCategory(category)[index])">
-          <div class="image-holder">
-            <img 
-              [src]="'/img/' + productsByCategory(category)[index].main_image"
-              [alt]="productsByCategory(category)[index].title"
-            />
-          </div>
-          <div class="title">
-            {{productsByCategory(category)[index].title[dictionary.language]}}
-          </div>
-          <div class="description">
-            {{productsByCategory(category)[index].description[dictionary.language]}}
-          </div>
-          <div class="price">
-            <span>{{dictionary.getTexts('price')}}</span>
-            <span class="new-price">{{productsByCategory(category)[index].new_price}}</span>
-            <span class="old-price">{{productsByCategory(category)[index].old_price}}</span>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="index%3 == 2" class="clearfix visible-sm visible-md visible-lg"></div>
-    <div class="col-xs-12 col-sm-12 col-md-4 add-new" (click)="showAddNewModal()">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </div>
-    <div class="clearfix visible-sm visible-md visible-lg"></div>
-  </div>
-</div> -->

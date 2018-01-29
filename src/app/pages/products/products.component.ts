@@ -62,6 +62,10 @@ export class ProductsComponent {
       return this.translateService.getLanguage();
     }
 
+    public filterProducts(eventData) {
+      
+    }
+
     public edit() {
 
     }
