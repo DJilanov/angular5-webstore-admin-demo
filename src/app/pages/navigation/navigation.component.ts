@@ -11,6 +11,11 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 import { CategoryModel } from '../../services/categories/category.model';
 
+const sharredOptions = {
+	header: true,
+	footer: true
+};
+
 @Component({
     selector: 'navigation',
     styleUrls: ['./navigation.component.scss'],
@@ -34,6 +39,7 @@ export class NavigationComponent {
     ) {
         this.categories = categoriesService.getCategories();
         this.categoriesClone = this.utilsService.cloneObject(this.categories);
+        this.eventBusService.emitChangeSharedOptions(sharredOptions);
         this.eventBusService.categoriesUpdate.subscribe(categories => this.onCategoriesUpdate(categories));
     };    
     

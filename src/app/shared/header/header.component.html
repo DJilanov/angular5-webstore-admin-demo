@@ -6,11 +6,11 @@
 
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li (click)="makeActiveTab('home')"
+            <!-- <li (click)="makeActiveTab('home')"
                 class="nav-item">
                 <a [class.active]="activeTab === 'home'"
                     class="nav-link" routerLink="/home" translate>Home</a>
-            </li>
+            </li> -->
             <li (click)="makeActiveTab('navigation')"
                 class="nav-item">
                 <a [class.active]="activeTab === 'navigation'"
@@ -26,7 +26,7 @@
                 <a [class.active]="activeTab === 'categories'"
                     class="nav-link" routerLink="/categories" translate>Categories</a>
             </li>
-            <li (click)="makeActiveTab('about-me')"
+            <li (click)="makeActiveTab('messages')"
                 class="nav-item">
                 <a [class.active]="activeTab === 'messages'"
                     class="nav-link" routerLink="/messages" translate>Messages</a>
@@ -34,7 +34,7 @@
             <li (click)="makeActiveTab('analytics')"
                 class="nav-item">
                 <a [class.active]="activeTab === 'analytics'"
-                    class="nav-link" routerLink="/home" translate>Analytics</a>
+                    class="nav-link" routerLink="/messages" translate>Analytics</a>
             </li>
         </ul>
         <form

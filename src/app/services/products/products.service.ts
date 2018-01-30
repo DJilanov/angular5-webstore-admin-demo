@@ -16,7 +16,7 @@ export class ProductsService {
     constructor(
         private eventBusService: EventBusService
     ) {
-        this.eventBusService.productsUpdate.subscribe((eventData) => this.setProducts(eventData.messages));
+        // this.eventBusService.productsUpdate.subscribe((eventData) => this.setProducts(eventData.messages));
     }
     /**
     * @getProducts get all products
@@ -28,6 +28,15 @@ export class ProductsService {
 
     public setProducts(products: ProductModel[]) {
         this.products = products;
+    }
+    
+    /**
+    * @emitCategories emit the categories to the components
+    */
+    public emitProducts() {
+        this.eventBusService.emitProductsUpdate({
+            products: this.products
+        });
     }
 
     public getProductById(id) {

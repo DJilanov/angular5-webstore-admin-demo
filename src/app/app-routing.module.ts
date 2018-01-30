@@ -18,13 +18,13 @@ const routes: Routes = [
     data: {
       title: 'Login'
     }
-  }, { 
-    path: 'home', 
-    component: HomeComponent,
-    data: {
-      title: 'Home'
-    },
-		canActivate: [LoginGuard]
+  // }, { 
+  //   path: 'home', 
+  //   component: HomeComponent,
+  //   data: {
+  //     title: 'Home'
+  //   },
+	// 	canActivate: [LoginGuard]
   }, { 
     path: 'navigation', 
     component: NavigationComponent,

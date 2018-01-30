@@ -13,6 +13,11 @@ import { CategoriesService } from '../../services/categories/categories.service'
 import { SearchModel } from './category.search.model';
 import { CategoryModel } from '../../services/categories/category.model';
 
+const sharredOptions = {
+	header: true,
+	footer: true
+};
+
 @Component({
     selector: 'categories',
     styleUrls: ['./categories.component.scss'],
@@ -35,6 +40,7 @@ export class CategoriesComponent {
         private errorHandlerService: ErrorHandlerService
     ) {
       this.categories = this.categoriesService.getCategories();
+      this.eventBusService.emitChangeSharedOptions(sharredOptions);
       this.eventBusService.categoriesUpdate.subscribe(categories => this.updateCategories(categories));
     };    
     

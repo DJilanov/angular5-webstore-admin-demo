@@ -11,9 +11,13 @@ import { UtilsService } from '../../services/utils/utils.service';
 import { ProductsService } from '../../services/products/products.service';
 import { CategoriesService } from '../../services/categories/categories.service';
 
-import { SearchModel } from './product.search.model';
 import { ProductModel } from '../../services/products/product.model';
 import { CategoryModel } from '../../services/categories/category.model';
+
+const sharredOptions = {
+	header: true,
+	footer: true
+};
 
 @Component({
     selector: 'products',
@@ -25,7 +29,6 @@ export class ProductsComponent {
 
     public products: Array<ProductModel>;
     public categories: Array<CategoryModel>;
-    public searchData: SearchModel = new SearchModel;
 
     constructor(
         private router: Router,
@@ -37,8 +40,9 @@ export class ProductsComponent {
     ) {
       this.products = productsService.getProducts();
       this.categories = categoriesService.getCategories();
-      this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
+      this.eventBusService.emitChangeSharedOptions(sharredOptions);
       this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
+      this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
     };
 
     private onChangedProduct(product) {

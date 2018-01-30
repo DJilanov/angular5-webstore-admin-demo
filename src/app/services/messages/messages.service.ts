@@ -19,7 +19,7 @@ export class MessagesService {
     constructor(
         private eventBusService: EventBusService
     ) {
-        this.eventBusService.messagesUpdate.subscribe((eventData) => this.setMessages(eventData.messages));
+        // this.eventBusService.messagesUpdate.subscribe((eventData) => this.setMessages(eventData.messages));
     }
 
     /**
@@ -35,6 +35,7 @@ export class MessagesService {
     */
     public setMessages(messages: MessageModel[]) {
         this.messagesArray = messages;
+        this.emitMessages();
     }
 
     /**

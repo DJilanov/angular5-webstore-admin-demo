@@ -12,7 +12,7 @@ const sharredOptions = {};
 export class HeaderComponent {
 
 	search = false;
-	activeTab = 'home';
+	activeTab = 'messages';
 
 	constructor(
 		private eventBusService: EventBusService,

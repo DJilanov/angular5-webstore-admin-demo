@@ -10,6 +10,11 @@ import { MessagesService } from '../../services/messages/messages.service';
 
 import { MessageModel } from '../../services/messages/message.model';
 
+const sharredOptions = {
+	header: true,
+	footer: true
+};
+
 @Component({
     selector: 'messages',
     styleUrls: ['./messages.component.scss'],
@@ -29,11 +34,12 @@ export class MessagesComponent {
         public errorHandlerService: ErrorHandlerService
     ) {
         this.messages = messagesService.getMessages();
+        this.eventBusService.emitChangeSharedOptions(sharredOptions);
         this.eventBusService.messagesUpdate.subscribe(messages => this.updateMessages(messages));
     };
     
     public updateMessages(eventData) {
-      this.messages = eventData.messages;
+        this.messages = eventData.messages;
     }
     
     public delete(message) {

@@ -11,6 +11,11 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 import { CategoryModel } from '../../services/categories/category.model';
 
+const sharredOptions = {
+	header: true,
+	footer: true
+};
+
 @Component({
     selector: 'categories',
     styleUrls: ['./categories.component.scss'],
@@ -31,6 +36,7 @@ export class CategoriesComponent {
     ) {
         // TODO: update by the root params
         // this.category;
+        this.eventBusService.emitChangeSharedOptions(sharredOptions);
         this.eventBusService.categoriesUpdate.subscribe(() => this.updateCategories());
     }
 

@@ -13,6 +13,11 @@ import { ProductsService } from '../../services/products/products.service';
 import { SearchModel } from './product.search.model';
 import { ProductModel } from '../../services/products/product.model';
 
+const sharredOptions = {
+	header: true,
+	footer: true
+};
+
 @Component({
     selector: 'products',
     styleUrls: ['./products.component.scss'],
@@ -32,6 +37,7 @@ export class ProductsComponent {
         private errorHandlerService: ErrorHandlerService,
     ) {
       this.products = this.productsService.getProducts();
+      this.eventBusService.emitChangeSharedOptions(sharredOptions);
       this.eventBusService.productsUpdate.subscribe(products => this.onProductsUpdate(products));
     };
 

@@ -18,7 +18,7 @@ export class CategoriesService {
     constructor(
         private eventBusService: EventBusService
     ) {
-        eventBusService.categoriesUpdate.subscribe((eventData) => this.setCategories(eventData.categories));
+        // eventBusService.categoriesUpdate.subscribe((eventData) => this.setCategories(eventData.categories));
     }
 
     /**
@@ -34,6 +34,7 @@ export class CategoriesService {
     */
     public setCategories(categories: CategoryModel[]) {
         this.categoryArray = categories;
+        this.emitCategories();
     }
     
     /**
