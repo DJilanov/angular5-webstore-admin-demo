@@ -8,7 +8,7 @@
   "scripts": {
     "start": "ng serve",
     "start-aot": "ng serve --aot",
-    "build-prod": "ng build --prod --base-href /admin/"
+    "build-prod": "ng build --prod"
   },
   "dependencies": {
     "@angular/animations": "5.2.2",
