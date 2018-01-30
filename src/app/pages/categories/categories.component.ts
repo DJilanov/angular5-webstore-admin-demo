@@ -26,7 +26,7 @@ const sharredOptions = {
 
 export class CategoriesComponent {
 
-    private categories: Array<CategoryModel>;
+    public categories: Array<CategoryModel>;
     public searchData: SearchModel = new SearchModel;
 
     constructor(
