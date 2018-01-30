@@ -20,12 +20,12 @@ const sharredOptions = {
 };
 
 @Component({
-    selector: 'products',
-    styleUrls: ['./products.component.scss'],
-    templateUrl: './products.component.html'
+    selector: 'product-edit',
+    styleUrls: ['./product-edit.component.scss'],
+    templateUrl: './product-edit.component.html'
 })
 
-export class ProductsComponent {
+export class ProductEditComponent {
 
     public products: Array<ProductModel>;
     public categories: Array<CategoryModel>;

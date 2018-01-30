@@ -17,12 +17,12 @@ const sharredOptions = {
 };
 
 @Component({
-    selector: 'categories',
-    styleUrls: ['./categories.component.scss'],
-    templateUrl: './categories.component.html'
+    selector: 'category-edit',
+    styleUrls: ['./category-edit.component.scss'],
+    templateUrl: './category-edit.component.html'
 })
 
-export class CategoriesComponent {
+export class CategoryEditComponent {
 
     public category: CategoryModel;
 

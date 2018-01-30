@@ -13,6 +13,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { ProductsComponent } from './products/products.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 @NgModule({
     imports: [
@@ -27,7 +29,9 @@ import { CategoriesComponent } from './categories/categories.component';
         MessagesComponent,
         ProductsComponent,
         NavigationComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        ProductEditComponent,
+        CategoryEditComponent
     ],
     declarations: [
         HomeComponent,
@@ -35,7 +39,9 @@ import { CategoriesComponent } from './categories/categories.component';
         MessagesComponent,
         ProductsComponent,
         NavigationComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        ProductEditComponent,
+        CategoryEditComponent
     ]
 })
 export class PagesModule {
