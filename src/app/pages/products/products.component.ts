@@ -9,11 +9,9 @@ import { ErrorHandlerService } from '../../core/error-handler/error-handler.serv
 import { AuthService } from '../../services/auth/auth.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { ProductsService } from '../../services/products/products.service';
-import { CategoriesService } from '../../services/categories/categories.service';
 
 import { SearchModel } from './product.search.model';
 import { ProductModel } from '../../services/products/product.model';
-import { CategoryModel } from '../../services/categories/category.model';
 
 @Component({
     selector: 'products',
@@ -22,40 +20,23 @@ import { CategoryModel } from '../../services/categories/category.model';
 })
 
 export class ProductsComponent {
-
     public products: Array<ProductModel>;
-    public categories: Array<CategoryModel>;
     public searchData: SearchModel = new SearchModel;
 
     constructor(
         private router: Router,
+        private utilsService: UtilsService,
         private productsService: ProductsService,
         private eventBusService: EventBusService,
         private translateService: TranslateService,
-        private categoriesService: CategoriesService,
         private errorHandlerService: ErrorHandlerService,
     ) {
-      this.products = productsService.getProducts();
-      this.categories = categoriesService.getCategories();
-      this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
-      this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
+      this.products = this.productsService.getProducts();
+      this.eventBusService.productsUpdate.subscribe(products => this.onProductsUpdate(products));
     };
 
-    private onChangedProduct(product) {
-      for(var productsCounter = 0; productsCounter < this.products.length; productsCounter++) {
-        if(this.products[productsCounter]['_id'] == product.response._id) {
-          this.products[productsCounter] = product.response;
-        }
-      }
-    }
-
-    private productsByCategory(category) {
-        return this.productsService.getProductsByCategory(category.products);
-    }
-    
-    private onFetchedData(data) {
-      this.products = data.products;
-      this.categories = data.categories;
+    private onProductsUpdate(eventData) {
+      this.products = eventData.product;
     }
     
     public getLanguage() {
@@ -63,55 +44,25 @@ export class ProductsComponent {
     }
 
     public filterProducts(eventData) {
-      
+      this.searchData[eventData.target.name] = eventData.target.value;
+      this.products = this.utilsService.cloneObject(this.productsService.getProducts());
+
+      for(let param in this.searchData) {
+        if(this.searchData[param] && this.searchData[param].length) {
+          this.products = this.products.filter((product) => {
+            if(product[param]) {
+              if(typeof product[param] === 'object') {
+                return product[param][this.getLanguage()].toString().toLowerCase().includes(this.searchData[param].toString().toLowerCase());
+              } else {
+                return product[param].toString().toLowerCase().includes(this.searchData[param].toString().toLowerCase());
+              }
+            }
+          });
+        }
+      }
     }
 
     public edit() {
-
-    }
-
-    public showAddNewModal() {
-    //   this.eventBusService.emitShowProductModal({
-    //       'product': {
-    //         "category": "",
-    //         "title": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "description": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "more_info": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "more_details": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "params": {
-    //             "bg": [],
-    //             "en": []
-    //         },
-    //         "new_price": "",
-    //         "old_price": "",
-    //         "daily_offer": false,
-    //         "zIndex": 0,
-    //         "shown": true,
-    //         "count": 0,
-            
-    //         "rating": 4.7,
-    //         "is_new": true,
-    //         "carousel": false,
-    //         "link": "",
-    //         "make": "",
-    //         "main_image": "",
-    //         "other_images": []
-    //       },
-    //       'action': 'create',
-    //       'title':'createProduct', 
-    //       "btnText": "createProduct"
-    //   });
+      // TODO: go to edit page with route params
     }
 }

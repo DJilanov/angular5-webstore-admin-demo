@@ -30,12 +30,8 @@ export class LoginComponent {
         public eventBusService: EventBusService,
         public errorHandlerService: ErrorHandlerService
     ) {
-        // TODO: Add correct remember me
-        // let data = this.authService.getLoginData();
-        // if(data['username']) {
-        //     this.router.navigate(['/home']);
-        // }
 		this.eventBusService.emitChangeSharedOptions(sharredOptions);
+        this.eventBusService.loggedIn.subscribe(() => this.login());
     }
 
     public tryLogin() {
@@ -43,16 +39,20 @@ export class LoginComponent {
             username: this.username,
             password: this.password
         }).subscribe(
-            data => this.login(data),
+            data => this.eventBusService.emitLoggedIn({
+                username: this.username,
+                password: this.password
+            }),
             err => this.errorHandlerService.handleRequestError(err)
         );
     }
 
-    public login(data) {
-        this.eventBusService.emitLoggedIn({
-            username: this.username,
-            password: this.password
-        });
+    public rememberMe() {
+        // TODO: Implement it. When you log if the token is not expired send it to the back-end to validate it
+        document.cookie = "token=User token; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+    }
+
+    private login() {
         this.router.navigate(['/home']);
     }
 }
