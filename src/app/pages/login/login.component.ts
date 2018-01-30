@@ -23,7 +23,7 @@ export class LoginComponent {
     public username: string = '';
     public password: string = '';
 
-    public showError: string
+    public showError: boolean;
 
     constructor(
 		public router: Router,
