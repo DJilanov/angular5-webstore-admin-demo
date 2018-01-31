@@ -11,6 +11,9 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
 
+import { ProductEditComponent } from './pages/product-edit/product-edit.component';
+import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
+
 const routes: Routes = [
   { 
     path: 'login', 
@@ -40,10 +43,24 @@ const routes: Routes = [
     },
 		canActivate: [LoginGuard]
   }, { 
+    path: 'product/:id', 
+    component: ProductEditComponent,
+    data: {
+      title: 'Product'
+    },
+		canActivate: [LoginGuard]
+  }, { 
     path: 'categories', 
     component: CategoriesComponent,
     data: {
       title: 'Categories'
+    },
+		canActivate: [LoginGuard]
+  }, { 
+    path: 'category/:id', 
+    component: CategoryEditComponent,
+    data: {
+      title: 'Category'
     },
 		canActivate: [LoginGuard]
   }, { 

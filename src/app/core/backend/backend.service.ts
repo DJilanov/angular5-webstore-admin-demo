@@ -67,28 +67,11 @@ export class BackendService {
         return this.backendRequest('post', 'admin/login', body);
     }
     /**
-    * @createProduct send request with new product
-    * @return {Object} response of the back-end
-    */
-    public createProduct(body) {
-        let request = Object.assign(body, {'type': 'create'});
-        return this.backendRequest('post', 'products', request);
-    }
-    /**
     * @updateProduct send request with changed product
     * @return {Object} response of the back-end
     */
     public updateProduct(body) {
-        let request = Object.assign(body, {'type': 'update'});
-        return this.backendRequest('post', 'products', request);
-    }
-    /**
-    * @deleteProduct send request with product for deletion
-    * @return {Object} response of the back-end
-    */
-    public deleteProduct(body) {
-        let request = Object.assign(body, {'type': 'delete'});
-        return this.backendRequest('post', 'products', request);
+        return this.backendRequest('post', 'products', body);
     }
     /**
     * @createCategories send request with new category

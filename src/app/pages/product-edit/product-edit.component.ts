@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BackendService } from '../../core/backend/backend.service';
 import { EventBusService } from '../../core/event-bus/event-bus.service';
@@ -27,95 +27,73 @@ const sharredOptions = {
 
 export class ProductEditComponent {
 
-    public products: Array<ProductModel>;
+    public product: ProductModel;
     public categories: Array<CategoryModel>;
 
     constructor(
         private router: Router,
+        private authService: AuthService,
+        private backendService: BackendService,
+        private activatedRoute: ActivatedRoute,
         private productsService: ProductsService,
         private eventBusService: EventBusService,
         private translateService: TranslateService,
         private categoriesService: CategoriesService,
         private errorHandlerService: ErrorHandlerService,
     ) {
-      this.products = productsService.getProducts();
-      this.categories = categoriesService.getCategories();
-      this.eventBusService.emitChangeSharedOptions(sharredOptions);
-      this.eventBusService.categoriesUpdate.subscribe(data => this.onFetchedData(data));
-      this.eventBusService.productsUpdate.subscribe(data => this.onChangedProduct(data));
+        // TODO: get the product id from the route and get it from the product service based on the id
+        // this.product = productsService.getProducts();
+        this.categories = this.categoriesService.getCategories();
+        this.eventBusService.productsUpdate.subscribe(data => this.productUpdated(data));
+
+        let routes = this.router.url.split('/');
+        this.updateProduct(routes[routes.length - 1]);
     };
 
-    private onChangedProduct(product) {
-      for(var productsCounter = 0; productsCounter < this.products.length; productsCounter++) {
-        if(this.products[productsCounter]['_id'] == product.response._id) {
-          this.products[productsCounter] = product.response;
-        }
-      }
+    private updateProduct(id) {
+      this.product = this.productsService.getProductById(id) || new ProductModel();
     }
 
-    private productsByCategory(category) {
-        return this.productsService.getProductsByCategory(category.products);
-    }
-    
-    private onFetchedData(data) {
-      this.products = data.products;
-      this.categories = data.categories;
+    private productUpdated(product) {
+        this.router.navigate(['/products']);
     }
     
     public getLanguage() {
-      return this.translateService.getLanguage();
+        return this.translateService.getLanguage();
     }
 
-    public filterProducts(eventData) {
-      
+    public deleteProduct() {
+        let loginData = this.authService.getLoginData();
+        let request = Object.assign(
+            {
+                product: this.product,
+                username: loginData['username'],
+                password: loginData['password']
+            }, {
+                'type': 'delete'
+            }
+        );
+        this.backendService.updateProduct(request).subscribe(
+            response => this.eventBusService.emitProductsUpdate(response),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
     }
 
-    public edit() {
-
-    }
-
-    public showAddNewModal() {
-    //   this.eventBusService.emitShowProductModal({
-    //       'product': {
-    //         "category": "",
-    //         "title": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "description": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "more_info": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "more_details": {
-    //             "bg": "",
-    //             "en": ""
-    //         },
-    //         "params": {
-    //             "bg": [],
-    //             "en": []
-    //         },
-    //         "new_price": "",
-    //         "old_price": "",
-    //         "daily_offer": false,
-    //         "zIndex": 0,
-    //         "shown": true,
-    //         "count": 0,
-            
-    //         "rating": 4.7,
-    //         "is_new": true,
-    //         "carousel": false,
-    //         "link": "",
-    //         "make": "",
-    //         "main_image": "",
-    //         "other_images": []
-    //       },
-    //       'action': 'create',
-    //       'title':'createProduct', 
-    //       "btnText": "createProduct"
-    //   });
+    public saveProduct() {
+        let loginData = this.authService.getLoginData();
+        let request = {
+            product: this.product,
+            username: loginData['username'],
+            password: loginData['password']
+        };
+        if(this.product.id) {
+            request = Object.assign(request, {'type': 'update'});
+        } else {
+            request = Object.assign(request, {'type': 'create'});
+        }
+        this.backendService.updateProduct(request).subscribe(
+            response => this.eventBusService.emitProductsUpdate(response),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
     }
 }

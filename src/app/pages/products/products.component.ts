@@ -68,7 +68,7 @@ export class ProductsComponent {
       }
     }
 
-    public edit() {
-      // TODO: go to edit page with route params
+    public edit(product) {
+      this.router.navigate(['/product/' + product._id]);
     }
 }
