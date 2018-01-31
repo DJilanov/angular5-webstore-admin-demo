@@ -74,28 +74,11 @@ export class BackendService {
         return this.backendRequest('post', 'products', body);
     }
     /**
-    * @createCategories send request with new category
-    * @return {Object} response of the back-end
-    */
-    public createCategories(body) {
-        let request = Object.assign(body, {'type': 'create'});
-        return this.backendRequest('post', 'categories', request);
-    }
-    /**
     * @updateCategories send request with changed categories array
     * @return {Object} response of the back-end
     */
     public updateCategories(body) {
-        let request = Object.assign(body, {'type': 'update'});
-        return this.backendRequest('post', 'categories', request);
-    }
-    /**
-    * @deleteCategory send request with category for deletion
-    * @return {Object} response of the back-end
-    */
-    public deleteCategory(body) {
-        let request = Object.assign(body, {'type': 'delete'});
-        return this.backendRequest('post', 'categories', request);
+        return this.backendRequest('post', 'categories', body);
     }
     /**
     * @getMessages get all messages

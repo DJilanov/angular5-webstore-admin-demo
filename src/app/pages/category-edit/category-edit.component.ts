@@ -31,6 +31,7 @@ export class CategoryEditComponent {
         private authService: AuthService,
         private backendService: BackendService,
         private eventBusService: EventBusService,
+        private translateService: TranslateService,
         private categoriesService: CategoriesService,
         private errorHandlerService: ErrorHandlerService
     ) {
@@ -38,19 +39,55 @@ export class CategoryEditComponent {
         // this.category;
         this.eventBusService.emitChangeSharedOptions(sharredOptions);
         this.eventBusService.categoriesUpdate.subscribe(() => this.updateCategories());
+        
+        let routes = this.router.url.split('/');
+        this.updateCategory(routes[routes.length - 1]);
     }
 
-    public edit() {
-        this.backendService.updateCategories({
-            categories: [this.category],
-            loginData: this.authService.getLoginData()
-        }).subscribe(
-            data => this.categoriesService.updateCategory(data.json()),
-            err => this.errorHandlerService.handleRequestError(err)
-        );
+    public updateCategory(id) {
+        this.categoriesService.getCategoryById(id) || new CategoryModel();
     }
 
     private updateCategories() {
         this.router.navigate(['/categories']);
+    }
+    
+    public getLanguage() {
+        return this.translateService.getLanguage();
+    }
+
+    public deleteProduct() {
+        let loginData = this.authService.getLoginData();
+        let request = Object.assign(
+            {
+                category: this.category,
+                username: loginData['username'],
+                password: loginData['password']
+            }, {
+                'type': 'delete'
+            }
+        );
+        this.backendService.updateCategories(request).subscribe(
+            response => this.eventBusService.emitCategoriesUpdate(response),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
+    }
+
+    public saveProduct() {
+        let loginData = this.authService.getLoginData();
+        let request = {
+            category: this.category,
+            username: loginData['username'],
+            password: loginData['password']
+        };
+        if(this.category.id) {
+            request = Object.assign(request, {'type': 'update'});
+        } else {
+            request = Object.assign(request, {'type': 'create'});
+        }
+        this.backendService.updateCategories(request).subscribe(
+            response => this.eventBusService.emitCategoriesUpdate(response),
+            err => this.errorHandlerService.handleRequestError(err)
+        );
     }
 }
