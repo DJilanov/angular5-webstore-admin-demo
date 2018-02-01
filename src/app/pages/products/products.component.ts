@@ -67,6 +67,10 @@ export class ProductsComponent {
         }
       }
     }
+    
+    public create() {
+      this.router.navigate(['/product/']);
+    }
 
     public edit(product) {
       this.router.navigate(['/product/' + product.id]);

@@ -26,6 +26,9 @@
           <input name="isOnCarousel" class="form-control" type="checkbox" [(ngModel)]="searchData.isOnCarousel" (change)="filterProducts($event)"/>
         </th>
         <th>
+            <span (click)="create()">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </span>
         </th>
       </tr>
     </thead>

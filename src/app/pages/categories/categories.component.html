@@ -22,6 +22,9 @@
             <input name="shownOnNav" class="form-control" type="checkbox" [(ngModel)]="searchData.shownOnNav" (change)="filterCategories($event)"/>
           </th>
           <th>
+              <span (click)="create()">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+              </span>
           </th>
         </tr>
       </thead>

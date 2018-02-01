@@ -70,6 +70,10 @@ export class CategoriesComponent {
             }
         }
     }
+    
+    public create() {
+        this.router.navigate(['/category/']);
+    }
 
     public edit(category) {
         this.router.navigate(['/category/' + category.id]);
