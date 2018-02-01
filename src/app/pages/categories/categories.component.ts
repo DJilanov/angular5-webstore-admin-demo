@@ -71,44 +71,7 @@ export class CategoriesComponent {
         }
     }
 
-    public edit() {
-
-    }
-    
-    public addCategory() {
-        this.categories[this.categories.length] = new CategoryModel();
-    }
-        
-
-    public create(category) {
-        this.backendService.createCategories({
-            category: category,
-            loginData: this.authService.getLoginData()
-        }).subscribe(
-            data => this.categoriesService.addCategory(data.json()),
-            err => this.errorHandlerService.handleRequestError(err)
-        );
-    }
-
-    public update(category) {
-        this.backendService.updateCategories({
-            categories: [category],
-            loginData: this.authService.getLoginData()
-        }).subscribe(
-            data => this.categoriesService.updateCategory(data.json()),
-            err => this.errorHandlerService.handleRequestError(err)
-        );
-    }
-
-    public delete(category) {
-        let loginData = this.authService.getLoginData();
-        this.backendService.deleteCategory({
-            category: category,
-            username: loginData['username'],
-            password: loginData['password']
-        }).subscribe(
-            data => this.categoriesService.removeCategory(data.json()),
-            err => this.errorHandlerService.handleRequestError(err)
-        );
+    public edit(category) {
+        this.router.navigate(['/category/' + category.id]);
     }
 }

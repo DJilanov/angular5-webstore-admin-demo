@@ -69,6 +69,6 @@ export class ProductsComponent {
     }
 
     public edit(product) {
-      this.router.navigate(['/product/' + product._id]);
+      this.router.navigate(['/product/' + product.id]);
     }
 }

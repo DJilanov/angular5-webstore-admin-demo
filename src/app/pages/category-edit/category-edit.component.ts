@@ -56,7 +56,7 @@ export class CategoryEditComponent {
         return this.translateService.getLanguage();
     }
 
-    public deleteProduct() {
+    public deleteCategory() {
         let loginData = this.authService.getLoginData();
         let request = Object.assign(
             {
@@ -73,7 +73,7 @@ export class CategoryEditComponent {
         );
     }
 
-    public saveProduct() {
+    public saveCategory() {
         let loginData = this.authService.getLoginData();
         let request = {
             category: this.category,
