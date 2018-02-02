@@ -105,7 +105,7 @@
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Category*</label>
-            <select name="energyType" class="form-control" [(ngModel)]="product.category" (change)="filterUsers($event)">
+            <select name="energyType" class="form-control" [(ngModel)]="product.category">
                 <option value=""></option>
                 <option *ngFor="let category of categories" [value]="category.id">{{category.title[getLanguage()]}}</option>
             </select>
@@ -213,12 +213,12 @@
         </div>
 
         <button type="button" class="btn btn-primary" 
-            (click)="saveProduct(productEditForm)">
+            (click)="saveProduct()">
             Save product
         </button>
         
         <button type="button" class="btn btn-danger" 
-            (click)="deleteProduct(productEditForm)">
+            (click)="deleteProduct()">
             Delete product
         </button>
     </form>
