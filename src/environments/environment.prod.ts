@@ -6,6 +6,6 @@
 export const environment = {
 	production: true,
 	envName: 'prod',
-	appUrl: 'http://localhost:4200/',
-	apiUrl: 'http://localhost:8080/api/',
+	appUrl: 'http://jilanov:4200/',
+	apiUrl: 'http://jilanov:8080/api/',
 };
