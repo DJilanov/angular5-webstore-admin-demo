@@ -34,7 +34,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td>{{product.title[getLanguage()]}}</td>
+        <td>
+          <span *ngIf="product.title">{{product.title[getLanguage()]}}</span>
+        </td>
         <td>{{product.category}}</td>
         <td>{{product.newPrice}}</td>
         <td>{{product.count}}</td>

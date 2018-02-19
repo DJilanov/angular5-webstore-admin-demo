@@ -64,6 +64,7 @@ export class ProductEditComponent {
 
     public deleteProduct() {
         let loginData = this.authService.getLoginData();
+        debugger;
         let request = Object.assign(
             {
                 product: this.product,
@@ -74,7 +75,7 @@ export class ProductEditComponent {
             }
         );
         this.backendService.updateProduct(request).subscribe(
-            response => this.eventBusService.emitProductsUpdate(response),
+            response => this.eventBusService.emitProductsUpdate(this.product),
             err => this.errorHandlerService.handleRequestError(err)
         );
     }
@@ -92,7 +93,7 @@ export class ProductEditComponent {
             request = Object.assign(request, {'type': 'create'});
         }
         this.backendService.updateProduct(request).subscribe(
-            response => this.eventBusService.emitProductsUpdate(response),
+            response => this.eventBusService.emitProductsUpdate(this.product),
             err => this.errorHandlerService.handleRequestError(err)
         );
     }

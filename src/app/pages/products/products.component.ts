@@ -69,7 +69,7 @@ export class ProductsComponent {
     }
     
     public create() {
-      this.router.navigate(['/product/']);
+      this.router.navigate(['/product/new']);
     }
 
     public edit(product) {

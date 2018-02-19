@@ -47,11 +47,11 @@ export class ProductModel {
 	) {
 		this.id = id;
 		this.category = category;
-		this.title = title;
-		this.description = description;
-		this.moreInfo = moreInfo;
-		this.moreDetails = moreDetails;
-		this.params = params;
+		this.title = title || new LanguageModel();
+		this.description = description || new LanguageModel();
+		this.moreInfo = moreInfo || new LanguageModel();
+		this.moreDetails = moreDetails || new LanguageModel();
+		this.params = params || new LanguageModel();
 		this.newPrice = newPrice;
 		this.oldPrice = oldPrice;
 		this.isDailyOffer = isDailyOffer;

@@ -8,7 +8,7 @@
             <input type="text" class="form-control"
                    [(ngModel)]="product.title['bg']"
                    placeholder="Title BG"
-                   name="title"
+                   name="titleBg"
                    required
                    pattern="^[A-Za-z'-]+$">
         </div>
@@ -18,7 +18,7 @@
             <input type="text" class="form-control"
                     [(ngModel)]="product.title['en']"
                     placeholder="Title EN*"
-                    name="title"
+                    name="titleEn"
                     required
                     pattern="^[A-Za-z'-]+$">
         </div>
@@ -28,7 +28,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.description['bg']"
                     placeholder="Description BG"
-                    name="description"
+                    name="descriptionBg"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -38,7 +38,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.description['en']"
                     placeholder="Description EN*"
-                    name="description"
+                    name="descriptionEn"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -48,7 +48,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.moreInfo['bg']"
                     placeholder="More Info BG*"
-                    name="moreInfo"
+                    name="moreInfoBg"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -58,7 +58,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.moreInfo['en']"
                     placeholder="More Info EN"
-                    name="moreInfo"
+                    name="moreInfoEn"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -68,7 +68,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.moreDetails['bg']"
                     placeholder="More Details"
-                    name="moreDetails"
+                    name="moreDetailsBg"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -78,7 +78,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.moreDetails['en']"
                     placeholder="More Details"
-                    name="moreDetails"
+                    name="moreDetailsEn"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -88,7 +88,7 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.params['bg']"
                     placeholder="Params BG"
-                    name="params"
+                    name="paramsBg"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
@@ -98,16 +98,16 @@
             <textarea type="text" class="form-control"
                     [(ngModel)]="product.params['en']"
                     placeholder="Params EN"
-                    name="params"
+                    name="paramsEn"
                     required
                     pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Category*</label>
-            <select name="energyType" class="form-control" [(ngModel)]="product.category">
+            <select name="category" class="form-control" [(ngModel)]="product.category">
                 <option value=""></option>
-                <option *ngFor="let category of categories" [value]="category.id">{{category.title[getLanguage()]}}</option>
+                <option *ngFor="let category of categories" [value]="category.products">{{category.title[getLanguage()]}}</option>
             </select>
         </div>
 
@@ -204,10 +204,10 @@
         </div>
         
         <div class="form-group medium-top-margin">
-            <label class="input-label">Link of manafuctuer item*</label>
+            <label class="input-label">Link of the item ( in browser )*</label>
             <input type="text" class="form-control"
                     [(ngModel)]="product.link"
-                    placeholder="Link of manafuctuer item"
+                    placeholder="Link of the item ( in browser )"
                     name="link"
                     required>
         </div>
