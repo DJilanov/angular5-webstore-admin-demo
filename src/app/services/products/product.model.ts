@@ -52,7 +52,7 @@ export class ProductModel {
 		this.description = description || new LanguageModel();
 		this.moreInfo = moreInfo || new LanguageModel();
 		this.moreDetails = moreDetails || new LanguageModel();
-		this.params = params || new LanguageModel();
+		this.params = params || new ParamsModel();
 		this.newPrice = newPrice;
 		this.oldPrice = oldPrice;
 		this.isDailyOffer = isDailyOffer;
