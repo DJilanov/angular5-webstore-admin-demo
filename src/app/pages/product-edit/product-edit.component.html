@@ -84,9 +84,9 @@
         </div>
         
         <div class="form-group medium-top-margin">
-            <label class="input-label">Params BG*</label>
+            <label class="input-label">Params1 BG*</label>
             <textarea type="text" class="form-control"
-                    [(ngModel)]="product.params['bg']"
+                    [(ngModel)]="product.params['bg'][0]"
                     placeholder="Params BG"
                     name="paramsBg"
                     required
@@ -94,9 +94,49 @@
         </div>
 
         <div class="form-group medium-top-margin">
-            <label class="input-label">Params EN*</label>
+            <label class="input-label">Params1 EN*</label>
             <textarea type="text" class="form-control"
-                    [(ngModel)]="product.params['en']"
+                    [(ngModel)]="product.params['en'][0]"
+                    placeholder="Params EN"
+                    name="paramsEn"
+                    required
+                    pattern="^[A-Za-z'-]+$"></textarea>
+        </div>
+
+        <div class="form-group medium-top-margin">
+            <label class="input-label">Params2 BG*</label>
+            <textarea type="text" class="form-control"
+                    [(ngModel)]="product.params['bg'][1]"
+                    placeholder="Params BG"
+                    name="paramsBg"
+                    required
+                    pattern="^[A-Za-z'-]+$"></textarea>
+        </div>
+
+        <div class="form-group medium-top-margin">
+            <label class="input-label">Params2 EN*</label>
+            <textarea type="text" class="form-control"
+                    [(ngModel)]="product.params['en'][1]"
+                    placeholder="Params EN"
+                    name="paramsEn"
+                    required
+                    pattern="^[A-Za-z'-]+$"></textarea>
+        </div>
+
+        <div class="form-group medium-top-margin">
+            <label class="input-label">Params3 BG*</label>
+            <textarea type="text" class="form-control"
+                    [(ngModel)]="product.params['bg'][2]"
+                    placeholder="Params BG"
+                    name="paramsBg"
+                    required
+                    pattern="^[A-Za-z'-]+$"></textarea>
+        </div>
+
+        <div class="form-group medium-top-margin">
+            <label class="input-label">Params3 EN*</label>
+            <textarea type="text" class="form-control"
+                    [(ngModel)]="product.params['en'][2]"
                     placeholder="Params EN"
                     name="paramsEn"
                     required

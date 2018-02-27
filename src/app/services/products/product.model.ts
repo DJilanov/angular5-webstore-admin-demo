@@ -1,4 +1,5 @@
 import { LanguageModel } from '../utils/language.model';
+import { ParamsModel } from '../utils/params.model';
 
 export class ProductModel {
 	id: string;
@@ -7,7 +8,7 @@ export class ProductModel {
 	description: LanguageModel;
 	moreInfo: LanguageModel;
 	moreDetails: LanguageModel;
-	params: LanguageModel;
+	params: ParamsModel;
 	newPrice: number;
 	oldPrice: number;
 	isDailyOffer: boolean;
@@ -30,7 +31,7 @@ export class ProductModel {
 		description?: LanguageModel,
 		moreInfo?: LanguageModel,
 		moreDetails?: LanguageModel,
-		params?: LanguageModel,
+		params?: ParamsModel,
 		newPrice?: number,
 		oldPrice?: number,
 		isDailyOffer?: boolean,
