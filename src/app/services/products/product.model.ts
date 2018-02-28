@@ -65,6 +65,6 @@ export class ProductModel {
 		this.link = link;
 		this.make = make;
 		this.mainImage = mainImage;
-		this.otherImages = otherImages;
+		this.otherImages = otherImages || [''];
 	}
 }

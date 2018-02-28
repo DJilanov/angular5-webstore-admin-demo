@@ -13,6 +13,7 @@ import { CategoriesService } from '../../services/categories/categories.service'
 
 import { ProductModel } from '../../services/products/product.model';
 import { CategoryModel } from '../../services/categories/category.model';
+import { ParamsModel } from '../../services/utils/params.model';
 
 const sharredOptions = {
 	header: true,
@@ -29,6 +30,11 @@ export class ProductEditComponent {
 
     public product: ProductModel;
     public categories: Array<CategoryModel>;
+
+    public disableSubmit = false;
+
+    private mainImage = '';
+    private otherImages = []
 
     constructor(
         private router: Router,
@@ -51,11 +57,49 @@ export class ProductEditComponent {
     };
 
     private updateProduct(id) {
-      this.product = this.productsService.getProductById(id) || new ProductModel();
+        let object = this.productsService.getProductById(id);
+        if(object) {
+            if(!Array.isArray(object.params['bg'])) {
+                object.params['bg'] = [''];
+            }
+            if(!Array.isArray(object.params['en'])) {
+                object.params['en'] = [''];
+            }
+            if(!Array.isArray(object.otherImages)) {
+                object.otherImages = [];
+            }
+            if(!object.otherImages.length) {
+                object.otherImages = [''];
+            }
+        }
+        this.product = object || new ProductModel();
+    }
+    
+    public fileSelected(file, param, index) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        this.disableSubmit = true;
+        reader.onload = () => {
+            if(param === 'mainImage') {
+                this.mainImage = reader.result
+            }
+            if(param === 'otherImages') {
+                this.otherImages[index] = reader.result
+            }
+            this.disableSubmit = false;
+        };
     }
 
     private productUpdated(product) {
         this.router.navigate(['/products']);
+    }
+    
+    public addParamsField() {
+        this.product.params.push(new ParamsModel());
+    }
+    
+    public removeParamsField(index) {
+        this.product.params.splice(index, 1);
     }
     
     public getLanguage() {
@@ -91,7 +135,9 @@ export class ProductEditComponent {
         let request = {
             product: this.product,
             username: loginData['username'],
-            password: loginData['password']
+            password: loginData['password'],
+            mainImage: this.mainImage,
+            otherImages: this.otherImages
         };
         if(this.product.id) {
             request = Object.assign(request, {'type': 'update'});
