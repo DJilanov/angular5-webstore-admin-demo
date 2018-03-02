@@ -75,7 +75,7 @@ export class ProductEditComponent {
         this.product = object || new ProductModel();
     }
     
-    public fileSelected(file, param, index) {
+    public fileSelected(file, param, index?) {
         var reader = new FileReader();
         reader.readAsDataURL(file);
         this.disableSubmit = true;
