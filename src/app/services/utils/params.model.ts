@@ -7,7 +7,7 @@ export class ParamsModel extends Array {
 		en?: string[],
 	) {
         super();
-		this.bg = bg;
-		this.en = en;
+		this.bg = bg || [''];
+		this.en = en || [''];
 	}
 }

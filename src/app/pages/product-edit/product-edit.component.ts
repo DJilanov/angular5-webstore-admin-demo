@@ -99,11 +99,15 @@ export class ProductEditComponent {
     }
     
     public addParamsField() {
-        this.product.params.push(new ParamsModel());
+        for(let param in this.product.params) {
+            this.product.params[param].push(new ParamsModel());
+        }
     }
     
     public removeParamsField(index) {
-        this.product.params.splice(index, 1);
+        for(let param in this.product.params) {
+            this.product.params[param].splice(index, 1);
+        }
     }
     
     public getLanguage() {
