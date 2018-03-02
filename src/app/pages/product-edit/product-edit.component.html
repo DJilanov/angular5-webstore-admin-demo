@@ -230,10 +230,10 @@
                 name="mainImage" />
         </div>
         
-            <div class="form-group medium-top-margin">
-                <label class="input-label">Current other images</label>
-                {{product.otherImages.toString()}}
-            </div>
+        <div class="form-group medium-top-margin">
+            <label class="input-label">Current other images</label>
+            {{product.otherImages.toString()}}
+        </div>
 
         <ng-container *ngFor="let image of product.otherImages; let i = index">
                 <div class="form-group medium-top-margin">
@@ -245,6 +245,11 @@
                         name="mainImage" />
                 </div>
         </ng-container>
+
+        <button type="button" class="btn btn-primary" 
+            (click)="addMoreImages()">
+            Add more images
+        </button>
 
         <button type="button" class="btn btn-primary" 
             (click)="saveProduct()"

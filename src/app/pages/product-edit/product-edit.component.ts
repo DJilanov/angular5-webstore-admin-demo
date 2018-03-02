@@ -74,6 +74,10 @@ export class ProductEditComponent {
         }
         this.product = object || new ProductModel();
     }
+
+    public addMoreImages() {
+        this.product.otherImages.push('');
+    }
     
     public fileSelected(file, param, index?) {
         var reader = new FileReader();
