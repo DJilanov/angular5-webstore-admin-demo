@@ -3,8 +3,11 @@
         <img class="logo" src="./assets/images/logo.png" alt="logo">
         <span translate>Admin panel</span>
     </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse text-sm-center" id="navigation">
         <ul class="navbar-nav mr-auto">
             <!-- <li (click)="makeActiveTab('home')"
                 class="nav-item">
@@ -12,33 +15,38 @@
                     class="nav-link" routerLink="/home" translate>Home</a>
             </li> -->
             <li (click)="makeActiveTab('navigation')"
-                class="nav-item">
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
                 <a [class.active]="activeTab === 'navigation'"
                     class="nav-link" routerLink="/navigation" translate>Navigation</a>
             </li>
             <li (click)="makeActiveTab('products')"
-                class="nav-item">
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
                 <a [class.active]="activeTab === 'products'"
                     class="nav-link" routerLink="/products" translate>Products</a>
             </li>
             <li (click)="makeActiveTab('categories')"
-                class="nav-item">
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
                 <a [class.active]="activeTab === 'categories'"
                     class="nav-link" routerLink="/categories" translate>Categories</a>
             </li>
             <li (click)="makeActiveTab('messages')"
-                class="nav-item">
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
                 <a [class.active]="activeTab === 'messages'"
                     class="nav-link" routerLink="/messages" translate>Messages</a>
             </li>
             <li (click)="makeActiveTab('analytics')"
-                class="nav-item">
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
                 <a [class.active]="activeTab === 'analytics'"
                     class="nav-link" routerLink="/messages" translate>Analytics</a>
             </li>
         </ul>
         <form
-            class="form-inline my-2 my-lg-0">
+            class="form-inline my-2 my-lg-0 d-sm-none">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" translate>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" translate>Search</button>
         </form>
