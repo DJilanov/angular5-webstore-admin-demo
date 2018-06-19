@@ -71,6 +71,9 @@ export class ProductEditComponent {
             if(!object.otherImages.length) {
                 object.otherImages = [''];
             }
+            if(object.otherImages[object.otherImages.length - 1].length) {
+                object.otherImages.push('');
+            }
         }
         this.product = object || new ProductModel();
     }

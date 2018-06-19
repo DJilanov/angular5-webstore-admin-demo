@@ -1,114 +1,71 @@
 <div class="container">
-    <form #productEditForm="ngForm" class="medium-top-margin"
-        role="form"
-        id="productEditForm">
+    <form #productEditForm="ngForm" class="medium-top-margin" role="form" id="productEditForm">
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Title BG*</label>
-            <input type="text" class="form-control"
-                   [(ngModel)]="product.title['bg']"
-                   placeholder="Title BG"
-                   name="titleBg"
-                   required
-                   pattern="^[A-Za-z'-]+$">
+            <input type="text" class="form-control" [(ngModel)]="product.title['bg']" placeholder="Title BG" name="titleBg" required
+                pattern="^[A-Za-z'-]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Title EN*</label>
-            <input type="text" class="form-control"
-                    [(ngModel)]="product.title['en']"
-                    placeholder="Title EN*"
-                    name="titleEn"
-                    required
-                    pattern="^[A-Za-z'-]+$">
+            <input type="text" class="form-control" [(ngModel)]="product.title['en']" placeholder="Title EN*" name="titleEn" required
+                pattern="^[A-Za-z'-]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Description BG*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.description['bg']"
-                    placeholder="Description BG"
-                    name="descriptionBg"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.description['bg']" placeholder="Description BG" name="descriptionBg"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Description EN*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.description['en']"
-                    placeholder="Description EN*"
-                    name="descriptionEn"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.description['en']" placeholder="Description EN*" name="descriptionEn"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">More Info BG*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.moreInfo['bg']"
-                    placeholder="More Info BG*"
-                    name="moreInfoBg"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.moreInfo['bg']" placeholder="More Info BG*" name="moreInfoBg"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">More Info EN*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.moreInfo['en']"
-                    placeholder="More Info EN"
-                    name="moreInfoEn"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.moreInfo['en']" placeholder="More Info EN" name="moreInfoEn"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">More Details BG*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.moreDetails['bg']"
-                    placeholder="More Details"
-                    name="moreDetailsBg"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.moreDetails['bg']" placeholder="More Details" name="moreDetailsBg"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">More Details EN*</label>
-            <textarea type="text" class="form-control"
-                    [(ngModel)]="product.moreDetails['en']"
-                    placeholder="More Details"
-                    name="moreDetailsEn"
-                    required
-                    pattern="^[A-Za-z'-]+$"></textarea>
+            <textarea type="text" class="form-control" [(ngModel)]="product.moreDetails['en']" placeholder="More Details" name="moreDetailsEn"
+                required pattern="^[A-Za-z'-]+$"></textarea>
         </div>
 
         <ng-container *ngIf="product.params['bg']">
             <ng-container *ngFor="let params of product.params['bg']; let i = index">
                 <div class="form-group medium-top-margin">
                     <label class="input-label">Param {{i}} BG*</label>
-                    <textarea type="text" class="form-control"
-                            [(ngModel)]="product.params['bg'][i]"
-                            [placeholder]="'Params BG' + i"
-                            [name]="'paramBg' + i"
-                            required
-                            pattern="^[A-Za-z'-]+$"></textarea>
+                    <textarea type="text" class="form-control" [(ngModel)]="product.params['bg'][i]" [placeholder]="'Params BG' + i" [name]="'paramBg' + i"
+                        required pattern="^[A-Za-z'-]+$"></textarea>
                 </div>
-        
+
                 <div class="form-group medium-top-margin">
                     <label class="input-label">Param {{i}} EN*</label>
-                    <textarea type="text" class="form-control"
-                            [(ngModel)]="product.params['en'][i]"
-                            [placeholder]="'Param EN' + i"
-                            [name]="'paramEn' + i"
-                            required
-                            pattern="^[A-Za-z'-]+$"></textarea>
+                    <textarea type="text" class="form-control" [(ngModel)]="product.params['en'][i]" [placeholder]="'Param EN' + i" [name]="'paramEn' + i"
+                        required pattern="^[A-Za-z'-]+$"></textarea>
                 </div>
             </ng-container>
         </ng-container>
-        
-        <button type="button" class="btn btn-primary" 
-            (click)="addParamsField()">
+
+        <button type="button" class="btn btn-primary" (click)="addParamsField()">
             Add more params
         </button>
 
@@ -122,149 +79,93 @@
 
         <div class="form-group medium-top-margin">
             <label class="input-label">New price*</label>
-            <input type="number" class="form-control"
-                    [(ngModel)]="product.newPrice"
-                    placeholder="New price*"
-                    name="newPrice"
-                    required
-                    pattern="^[0-9]+$">
+            <input type="number" class="form-control" [(ngModel)]="product.newPrice" placeholder="New price*" name="newPrice" required
+                pattern="^[0-9]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Old price*</label>
-            <input type="number" class="form-control"
-                    [(ngModel)]="product.oldPrice"
-                    placeholder="Old price"
-                    name="oldPrice"
-                    required
-                    pattern="^[0-9]+$">
+            <input type="number" class="form-control" [(ngModel)]="product.oldPrice" placeholder="Old price" name="oldPrice" required
+                pattern="^[0-9]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Is daily offer*</label>
-            <input type="checkbox"
-                    [(ngModel)]="product.isDailyOffer"
-                    name="isDailyOffer"
-                    required>
+            <input type="checkbox" [(ngModel)]="product.isDailyOffer" name="isDailyOffer" required>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Index in the list*</label>
-            <input type="number" class="form-control"
-                    [(ngModel)]="product.zIndex"
-                    placeholder="Index in the list*"
-                    name="zIndex"
-                    required
-                    pattern="^[0-9]+$">
+            <input type="number" class="form-control" [(ngModel)]="product.zIndex" placeholder="Index in the list*" name="zIndex" required
+                pattern="^[0-9]+$">
         </div>
-        
+
         <div class="form-group medium-top-margin">
             <label class="input-label">Is shown on screen*</label>
-            <input type="checkbox"
-                    [(ngModel)]="product.isShown"
-                    name="isShown"
-                    required>
+            <input type="checkbox" [(ngModel)]="product.isShown" name="isShown" required>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Count*</label>
-            <input type="number" class="form-control"
-                    [(ngModel)]="product.count"
-                    placeholder="Count"
-                    name="count"
-                    required
-                    pattern="^[0-9]+$">
+            <input type="number" class="form-control" [(ngModel)]="product.count" placeholder="Count" name="count" required pattern="^[0-9]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Rating*</label>
-            <input type="number" class="form-control"
-                    [(ngModel)]="product.rating"
-                    placeholder="Rating*"
-                    name="rating"
-                    required
-                    pattern="^[0-5]+$">
+            <input type="number" class="form-control" [(ngModel)]="product.rating" placeholder="Rating*" name="rating" required pattern="^[0-5]+$">
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Is new item*</label>
-            <input type="checkbox"
-                    [(ngModel)]="product.isNew"
-                    name="isNew"
-                    required>
+            <input type="checkbox" [(ngModel)]="product.isNew" name="isNew" required>
         </div>
-        
+
         <div class="form-group medium-top-margin">
             <label class="input-label">Is on carousel*</label>
-            <input type="checkbox"
-                    [(ngModel)]="product.isOnCarousel"
-                    name="isOnCarousel"
-                    required>
+            <input type="checkbox" [(ngModel)]="product.isOnCarousel" name="isOnCarousel" required>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Manafuctuer*</label>
-            <input type="text" class="form-control"
-                    [(ngModel)]="product.make"
-                    placeholder="Manafuctuer*"
-                    name="make"
-                    required
-                    pattern="^[A-Za-z'-]+$">
-        </div>
-        
-        <div class="form-group medium-top-margin">
-            <label class="input-label">Link of the item ( in browser )*</label>
-            <input type="text" class="form-control"
-                    [(ngModel)]="product.link"
-                    placeholder="Link of the item ( in browser )"
-                    name="link"
-                    required>
+            <input type="text" class="form-control" [(ngModel)]="product.make" placeholder="Manafuctuer*" name="make" required pattern="^[A-Za-z'-]+$">
         </div>
 
         <div class="form-group medium-top-margin">
-            <label class="input-label">Current main image</label>
-            {{product.mainImage}}
+            <label class="input-label">Link of the item ( in browser )*</label>
+            <input type="text" class="form-control" [(ngModel)]="product.link" placeholder="Link of the item ( in browser )" name="link"
+                required>
         </div>
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Upload main image</label>
-            <input type="file" class="form-control" accept="image/*"
-                (change)="fileSelected($event.target.files[0], 'mainImage')"
-                [(ngModel)]="product.mainImage"
-                placeholder="Upload main image"
-                name="mainImage" />
-        </div>
-        
-        <div class="form-group medium-top-margin">
-            <label class="input-label">Current other images</label>
-            {{product.otherImages.toString()}}
+            <span *ngIf="product.mainImage.length">Current image: {{product.mainImage}}</span>
+            <input type="file" class="form-control" accept="image/*" (change)="fileSelected($event.target.files[0], 'mainImage')" [(ngModel)]="product.mainImage"
+                placeholder="Upload main image" name="mainImage" />
         </div>
 
         <ng-container *ngFor="let image of product.otherImages; let i = index">
-                <div class="form-group medium-top-margin">
-                    <label class="input-label">Upload other image {{i}}</label>
-                    <input type="file" class="form-control" accept="image/*"
-                        (change)="fileSelected($event.target.files[0], 'otherImages', i)"
-                        [(ngModel)]="product.otherImages[i]"
-                        placeholder="Upload other image"
-                        name="mainImage" />
-                </div>
+            <div *ngIf="!image.length"
+                class="form-group medium-top-margin">
+                <label class="input-label">Upload other image {{i}}</label>
+                <input type="file" class="form-control" accept="image/*" (change)="fileSelected($event.target.files[0], 'otherImages', i)"
+                    [(ngModel)]="product.otherImages[i]" placeholder="Upload other image" name="mainImage" />
+            </div>
+            <div *ngIf="image.length"
+                class="form-group medium-top-margin">
+                Using image {{image}}. Click to remove
+            </div>
         </ng-container>
 
-        <button type="button" class="btn btn-primary" 
-            (click)="addMoreImages()">
+        <button type="button" class="btn btn-primary" (click)="addMoreImages()">
             Add more images
         </button>
 
-        <button type="button" class="btn btn-primary" 
-            (click)="saveProduct()"
-            [disabled]="disableSubmit">
+        <button type="button" class="btn btn-primary" (click)="saveProduct()" [disabled]="disableSubmit">
             Save product
         </button>
-        
-        <button type="button" class="btn btn-danger" 
-            (click)="deleteProduct()">
+
+        <button type="button" class="btn btn-danger" (click)="deleteProduct()">
             Delete product
         </button>
     </form>
-  </div>
+</div>

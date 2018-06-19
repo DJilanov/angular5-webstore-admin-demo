@@ -6,7 +6,7 @@
   "repository": "",
   "author": "Dimitar Jilanov",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --port 4201",
     "start-aot": "ng serve --aot",
     "build-prod": "ng build --prod"
   },
