@@ -20,8 +20,8 @@ const sharredOptions = {
 })
 
 export class LoginComponent {
-    public username: string = 'toni-website';
-    public password: string = 'toni1221';
+    public username: string;
+    public password: string;
 
     public showError: boolean;
 
