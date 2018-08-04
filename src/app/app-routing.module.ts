@@ -7,6 +7,7 @@ import { LoginGuard } from './core/login-guard/login-guard.service';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
@@ -68,6 +69,13 @@ const routes: Routes = [
     component: MessagesComponent,
     data: {
       title: 'Messages'
+    },
+		canActivate: [LoginGuard]
+  },{ 
+    path: 'orders', 
+    component: OrdersComponent,
+    data: {
+      title: 'Orders'
     },
 		canActivate: [LoginGuard]
   }, {

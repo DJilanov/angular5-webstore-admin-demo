@@ -9,6 +9,7 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { OrdersComponent } from './orders/orders.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductsComponent } from './products/products.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -26,6 +27,7 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
     exports: [
         HomeComponent,
         LoginComponent,
+        OrdersComponent,
         MessagesComponent,
         ProductsComponent,
         NavigationComponent,
@@ -36,6 +38,7 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
     declarations: [
         HomeComponent,
         LoginComponent,
+        OrdersComponent,
         MessagesComponent,
         ProductsComponent,
         NavigationComponent,

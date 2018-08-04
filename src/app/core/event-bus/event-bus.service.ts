@@ -7,13 +7,14 @@ import { Injectable, EventEmitter } from '@angular/core';
  */
 export class EventBusService {
 
-    public loggedIn: EventEmitter<any>;
+  public loggedIn: EventEmitter<any>;
 	public translate: EventEmitter<any>;
 	public changeRoute: EventEmitter<any>;
 	public requestError: EventEmitter<any>;
 	public changeLanguage: EventEmitter<any>;
 	public productsUpdate: EventEmitter<any>;
 	public messagesUpdate: EventEmitter<any>;
+	public ordersUpdate: EventEmitter<any>;
 	public categoriesUpdate: EventEmitter<any>;
 
 	public changeSharedOptions: EventEmitter<any>;
@@ -26,6 +27,7 @@ export class EventBusService {
 		this.changeLanguage = new EventEmitter();
 		this.productsUpdate = new EventEmitter();
 		this.messagesUpdate = new EventEmitter();
+		this.ordersUpdate = new EventEmitter();
 		this.categoriesUpdate = new EventEmitter();
 
 		this.changeSharedOptions = new EventEmitter();		
@@ -57,7 +59,11 @@ export class EventBusService {
 	
 	public emitMessagesUpdate(messages) {
 		this.messagesUpdate.emit(messages);
-	}
+  }
+  
+  public emitOrdersUpdate(orders) {
+		this.ordersUpdate.emit(orders);
+  }
 	
 	public emitCategoriesUpdate(categories) {
 		this.categoriesUpdate.emit(categories);

@@ -5,6 +5,7 @@ import { AuthService } from './auth/auth.service';
 import { CategoriesService } from './categories/categories.service';
 import { MessagesService } from './messages/messages.service';
 import { ProductsService } from './products/products.service';
+import { OrdersService } from './orders/orders.service';
 import { UtilsService } from './utils/utils.service';
 
 import { throwIfAlreadyLoaded } from '../core/module-import-guard';
@@ -17,6 +18,7 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
         AuthService,
         CategoriesService,
         MessagesService,
+        OrdersService,
         ProductsService,
         UtilsService
     ],

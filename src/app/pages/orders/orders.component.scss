@@ -1,0 +1,17 @@
+@import '../../../variables';
+
+:host {
+    flex: 1 0 auto;
+    overflow: auto;
+}
+
+.message {
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

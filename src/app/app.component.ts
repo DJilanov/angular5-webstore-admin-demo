@@ -6,6 +6,7 @@ import { EventBusService } from './core/event-bus/event-bus.service';
 import { ErrorHandlerService } from './core/error-handler/error-handler.service';
 
 import { AuthService } from './services/auth/auth.service';
+import { OrdersService } from './services/orders/orders.service';
 import { ProductsService } from './services/products/products.service';
 import { MessagesService } from './services/messages/messages.service';
 import { CategoriesService } from './services/categories/categories.service';
@@ -26,6 +27,7 @@ export class AppComponent {
     constructor(
         private router: Router,
         private authService: AuthService,
+        private ordersService: OrdersService,
         private backendService: BackendService,
         private productsService: ProductsService,
         private messagesService: MessagesService,
@@ -63,6 +65,7 @@ export class AppComponent {
     private setData(result) {
         this.productsService.setProducts(result.products);
         this.messagesService.setMessages(result.messages);
+        this.ordersService.setOrders(result.orders);
         this.categoriesService.setCategories(result.categories);
     }
 }

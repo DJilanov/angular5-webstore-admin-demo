@@ -60,6 +60,14 @@ export class BackendService {
         return this.backendRequest('post', 'order', body);
     }
     /**
+    * @deleteOrder send request with order for deletion
+    * @return {Object} response of the back-end
+    */
+    public deleteOrder(body) {
+        let request = Object.assign(body, {'type': 'delete'});
+        return this.backendRequest('post', 'order', request);
+    }
+    /**
     * @adminLogin send request with login data to the back-end
     * @return {Object} response of the back-end
     */

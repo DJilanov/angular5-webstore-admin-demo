@@ -38,6 +38,12 @@
                 <a [class.active]="activeTab === 'messages'"
                     class="nav-link" routerLink="/messages" translate>Messages</a>
             </li>
+            <li (click)="makeActiveTab('orders')"
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
+                <a [class.active]="activeTab === 'orders'"
+                    class="nav-link" routerLink="/orders" translate>Orders</a>
+            </li>
             <li (click)="makeActiveTab('analytics')"
                 class="nav-item"
                 data-toggle="collapse" data-target="#navigation">
