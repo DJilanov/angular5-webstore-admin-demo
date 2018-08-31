@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { DndModule } from 'ng2-dnd';
-
 import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
 import { HomeComponent } from './home/home.component';
@@ -21,8 +19,7 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
     imports: [
         RouterModule,
         CommonModule,
-        FormsModule,
-        DndModule.forRoot()
+        FormsModule
     ],
     exports: [
         HomeComponent,
