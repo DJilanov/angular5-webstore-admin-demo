@@ -12,60 +12,60 @@ import { MessagesService } from './services/messages/messages.service';
 import { CategoriesService } from './services/categories/categories.service';
 
 @Component({
-    selector: 'app',
-    templateUrl: './app.component.html',
-    styleUrls: [ './app.component.scss' ]
+  selector: 'app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent {
 
-    public options = {
-        header: false,
-        footer: false
-    }
+  public options = {
+    header: false,
+    footer: false
+  }
 
-    constructor(
-        private router: Router,
-        private authService: AuthService,
-        private ordersService: OrdersService,
-        private backendService: BackendService,
-        private productsService: ProductsService,
-        private messagesService: MessagesService,
-        private eventBusService: EventBusService,
-        private categoriesService: CategoriesService,
-        private errorHandlerService: ErrorHandlerService
-    ) {
-        this.eventBusService.loggedIn.subscribe(data => this.onLogin(data));
-		this.eventBusService.changeSharedOptions.subscribe(
-			(options) => this.updateSharedOptions(options)
-		);
-		this.router.events.subscribe(
-			(event) => {
-				if(event instanceof NavigationStart) {
-					this.eventBusService.emitChangeRoute(event.url);
-				}
-			}
-		);
-    };
-    
-    private updateSharedOptions(options) {
-        this.options.header = options.header || false;
-        this.options.footer = options.footer || false;
-    }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private ordersService: OrdersService,
+    private backendService: BackendService,
+    private productsService: ProductsService,
+    private messagesService: MessagesService,
+    private eventBusService: EventBusService,
+    private categoriesService: CategoriesService,
+    private errorHandlerService: ErrorHandlerService
+  ) {
+    this.eventBusService.loggedIn.subscribe(data => this.onLogin(data));
+    this.eventBusService.changeSharedOptions.subscribe(
+      (options) => this.updateSharedOptions(options)
+    );
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationStart) {
+          this.eventBusService.emitChangeRoute(event.url);
+        }
+      }
+    );
+  };
 
-    private onLogin(eventData) {
-        this.backendService.getAllData(
-            this.authService.getLoginData()
-        ).subscribe(
-            data => this.setData(data.json()),
-            err => this.errorHandlerService.handleRequestError(err)
-        );
-    }
+  private updateSharedOptions(options) {
+    this.options.header = options.header || false;
+    this.options.footer = options.footer || false;
+  }
 
-    private setData(result) {
-        this.productsService.setProducts(result.products);
-        this.messagesService.setMessages(result.messages);
-        this.ordersService.setOrders(result.orders);
-        this.categoriesService.setCategories(result.categories);
-    }
+  private onLogin(eventData) {
+    this.backendService.getAllData(
+      this.authService.getLoginData()
+    ).subscribe(
+      data => this.setData(data.json()),
+      err => this.errorHandlerService.handleRequestError(err)
+    );
+  }
+
+  private setData(result) {
+    this.productsService.setProducts(result.products);
+    this.messagesService.setMessages(result.messages);
+    this.ordersService.setOrders(result.orders);
+    this.categoriesService.setCategories(result.categories);
+  }
 }

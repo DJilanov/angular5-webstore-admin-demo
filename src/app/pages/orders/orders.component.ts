@@ -47,7 +47,9 @@ export class OrdersComponent {
     public delete(order) {
         let loginData = this.authService.getLoginData();
         this.backendService.deleteOrder({
-            order: order,
+            order: {
+              id: order.id
+            },
             username: loginData['username'],
             password: loginData['password']
         }).subscribe(

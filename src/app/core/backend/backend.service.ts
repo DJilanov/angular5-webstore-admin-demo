@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { URLSearchParams, Http, Response } from '@angular/http';
+import { RequestOptions, Http } from '@angular/http';
 
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/mergeMap';
@@ -21,6 +21,10 @@ export class BackendService {
 			return this.http.get(environment.apiUrl + requestTarget, {
 				params: requestData 
 			});
+		} else if (requestType === 'delete') {
+			return this.http.delete(environment.apiUrl + requestTarget, new RequestOptions({
+        body: requestData
+     }))
 		}
 	}
     /**
@@ -65,7 +69,7 @@ export class BackendService {
     */
     public deleteOrder(body) {
         let request = Object.assign(body, {'type': 'delete'});
-        return this.backendRequest('post', 'order', request);
+        return this.backendRequest('delete', 'order', request);
     }
     /**
     * @adminLogin send request with login data to the back-end

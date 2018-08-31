@@ -42,9 +42,9 @@ export class OrdersService {
     * @removeOrder remove order from the orders
     */
     public removeOrder(response) {
-        let order = response.response;
+        let id = response.response;
         for(let orderCounter = 0; orderCounter < this.ordersArray.length; orderCounter++) {
-            if(this.ordersArray[orderCounter]['id'] == order.id) {
+            if(this.ordersArray[orderCounter]['id'] == id) {
                 this.ordersArray.splice(orderCounter, 1);
                 break;
             }
