@@ -32,40 +32,28 @@ export class WarrantyPrintComponent {
     switch(id) {
       case 0:
         return 'Януари';
-      break;
       case 1:
         return 'Февруари';
-      break;
       case 2:
         return 'Март';
-      break;
       case 3:
         return 'Април';
-      break;
       case 4:
         return 'Май';
-      break;
       case 5:
         return 'Юни';
-      break;
       case 6:
         return 'Юли';
-      break;
       case 7:
         return 'Август';
-      break;
       case 8:
         return 'Септември';
-      break;
       case 9:
         return 'Октомври';
-      break;
       case 10:
         return 'Ноември';
-      break;
       case 11:
         return 'Декември';
-      break;
     }
   } 
 
