@@ -14,7 +14,7 @@ import { WarrantyModel } from '../../services/warranties/warranty.model';
 export class WarrantyPrintComponent {
   public warranties: Array<WarrantyModel>;
 
-  private warranty = {};
+  private warranty: any = {};
   public clientName = 'Test1234';
   public date = '28.28.28';
 
