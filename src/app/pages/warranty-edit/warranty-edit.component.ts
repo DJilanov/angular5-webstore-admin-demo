@@ -16,7 +16,9 @@ export class WarrantyEditComponent {
 
   public warranty: any;
 
-  private isNew = true;
+  public isNew = true;
+
+  public disableSubmit = false;
 
   constructor(
     private router: Router,

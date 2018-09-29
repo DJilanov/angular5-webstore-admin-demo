@@ -11,15 +11,15 @@
       </tr>
       <tr>
         <th>
-          <input name="title" type="text" class="form-control" [(ngModel)]="searchData.title" placeholder="Search by id"
+          <input name="title" type="text" class="form-control" [(ngModel)]="searchData.id" placeholder="Search by id"
             (change)="filterWarranties($event)">
         </th>
         <th>
-          <input name="category" type="text" class="form-control" [(ngModel)]="searchData.category" placeholder="Search by item"
+          <input name="category" type="text" class="form-control" [(ngModel)]="searchData.type" placeholder="Search by item"
             (change)="filterWarranties($event)">
         </th>
         <th>
-          <input name="newPrice" type="text" class="form-control" [(ngModel)]="searchData.newPrice" placeholder="Search by serial number"
+          <input name="newPrice" type="text" class="form-control" [(ngModel)]="searchData.serial" placeholder="Search by serial number"
             (change)="filterWarranties($event)">
         </th>
         <th></th>

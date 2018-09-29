@@ -22,7 +22,7 @@ export class WarrantiesComponent {
   public searchData = {
     id: '',
     type: '',
-    items: ''
+    serial: ''
   };
 
   constructor(
@@ -44,5 +44,9 @@ export class WarrantiesComponent {
     this.warrantiesService.deleteWarranty(warranty).subscribe((response) => {
       this.warranties = this.warrantiesService.getWarranties();
     });
+  }
+
+  public filterWarranties(event) {
+
   }
 }
