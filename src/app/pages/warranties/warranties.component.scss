@@ -1,0 +1,10 @@
+@import '../../../variables';
+
+:host {
+    flex: 1 0 auto;
+    overflow: auto;
+}
+
+i {
+  cursor: pointer;
+}

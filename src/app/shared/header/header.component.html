@@ -50,6 +50,12 @@
                 <a [class.active]="activeTab === 'analytics'"
                     class="nav-link" routerLink="/messages" translate>Analytics</a>
             </li>
+            <li (click)="makeActiveTab('warranties')"
+                class="nav-item"
+                data-toggle="collapse" data-target="#navigation">
+                <a [class.active]="activeTab === 'warranties'"
+                    class="nav-link" routerLink="/warranties" translate>Warranties</a>
+            </li>
         </ul>
         <form
             class="form-inline my-2 my-lg-0 d-sm-none">

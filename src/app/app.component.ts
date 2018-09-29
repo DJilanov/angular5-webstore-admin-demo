@@ -10,6 +10,7 @@ import { OrdersService } from './services/orders/orders.service';
 import { ProductsService } from './services/products/products.service';
 import { MessagesService } from './services/messages/messages.service';
 import { CategoriesService } from './services/categories/categories.service';
+import { WarrantiesService } from './services/warranties/warranties.service';
 
 @Component({
   selector: 'app',
@@ -33,7 +34,8 @@ export class AppComponent {
     private messagesService: MessagesService,
     private eventBusService: EventBusService,
     private categoriesService: CategoriesService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private warrantiesService: WarrantiesService
   ) {
     this.eventBusService.loggedIn.subscribe(data => this.onLogin(data));
     this.eventBusService.changeSharedOptions.subscribe(
@@ -67,5 +69,6 @@ export class AppComponent {
     this.messagesService.setMessages(result.messages);
     this.ordersService.setOrders(result.orders);
     this.categoriesService.setCategories(result.categories);
+    this.warrantiesService.setWarranties(result.warranties);
   }
 }

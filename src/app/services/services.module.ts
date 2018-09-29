@@ -7,6 +7,7 @@ import { MessagesService } from './messages/messages.service';
 import { ProductsService } from './products/products.service';
 import { OrdersService } from './orders/orders.service';
 import { UtilsService } from './utils/utils.service';
+import { WarrantiesService } from './warranties/warranties.service';
 
 import { throwIfAlreadyLoaded } from '../core/module-import-guard';
 
@@ -20,7 +21,8 @@ import { throwIfAlreadyLoaded } from '../core/module-import-guard';
         MessagesService,
         OrdersService,
         ProductsService,
-        UtilsService
+        UtilsService,
+        WarrantiesService
     ],
     exports: []
 })

@@ -14,6 +14,9 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { WarrantiesComponent } from './warranties/warranties.component';
+import { WarrantyEditComponent } from './warranty-edit/warranty-edit.component';
+import { WarrantyPrintComponent } from './warranty-print/warranty-print.component';
 
 @NgModule({
     imports: [
@@ -30,7 +33,10 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
         NavigationComponent,
         CategoriesComponent,
         ProductEditComponent,
-        CategoryEditComponent
+        CategoryEditComponent,
+        WarrantiesComponent,
+        WarrantyEditComponent,
+        WarrantyPrintComponent
     ],
     declarations: [
         HomeComponent,
@@ -41,7 +47,10 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
         NavigationComponent,
         CategoriesComponent,
         ProductEditComponent,
-        CategoryEditComponent
+        CategoryEditComponent,
+        WarrantiesComponent,
+        WarrantyEditComponent,
+        WarrantyPrintComponent
     ]
 })
 export class PagesModule {

@@ -6,3 +6,10 @@
     flex-direction: column;
     font-family: Roboto;
 }
+
+@media print {
+  app-header,
+  app-footer {
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+@import '../../../variables';
+
+:host {
+    flex: 1 0 auto;
+    overflow: auto;
+}
+
+button {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.box {
+  padding: 30px;
+  border: 1px solid gray;
+}
+
+.right {
+  float: right;
+  text-align: right;
+}

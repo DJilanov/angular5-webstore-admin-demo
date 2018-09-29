@@ -7,19 +7,35 @@ $body-font-size-desktop: 22px;
 
 // GLOBAL APP STYLES
 .flex-spacer {
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
 }
 
 .tiny-left-margin {
-    margin-left: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 .medium-top-margin {
-    margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .pointer {
-    cursor: pointer;
+	cursor: pointer;
+}
+
+.small-bottom-margin {
+	margin-bottom: 20px;
+}
+
+@media print {
+	@page {
+    size: auto;
+    margin: 0;
+	}
+
+	body {
+		padding-top: 72px;
+		margin-bottom: -72px;
+	}
 }

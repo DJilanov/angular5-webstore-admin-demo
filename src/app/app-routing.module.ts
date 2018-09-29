@@ -11,6 +11,9 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { NavigationComponent } from './pages/navigation/navigation.component';
+import { WarrantiesComponent } from './pages/warranties/warranties.component';
+import { WarrantyEditComponent } from './pages/warranty-edit/warranty-edit.component';
+import { WarrantyPrintComponent } from './pages/warranty-print/warranty-print.component';
 
 import { ProductEditComponent } from './pages/product-edit/product-edit.component';
 import { CategoryEditComponent } from './pages/category-edit/category-edit.component';
@@ -76,6 +79,27 @@ const routes: Routes = [
     component: OrdersComponent,
     data: {
       title: 'Orders'
+    },
+		canActivate: [LoginGuard]
+  }, {
+    path: 'warranties', 
+    component: WarrantiesComponent,
+    data: {
+      title: 'Warranties'
+    },
+		canActivate: [LoginGuard]
+  }, { 
+    path: 'warranties/:id', 
+    component: WarrantyEditComponent,
+    data: {
+      title: 'Warranty'
+    },
+		canActivate: [LoginGuard]
+  }, { 
+    path: 'print-warranties/:id', 
+    component: WarrantyPrintComponent,
+    data: {
+      title: 'Warranty'
     },
 		canActivate: [LoginGuard]
   }, {
