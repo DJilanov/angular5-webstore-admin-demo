@@ -17,6 +17,14 @@
       </div>
       <div class="form-group medium-top-margin">
         <label class="input-label">Product</label>
+        <!-- Памет ДДР2 
+        Памет ДДР3
+        Памет ДДР4
+        Процесор
+        Хардиск
+        Видеокарта
+
+        Генериране на полетата динамично. При попълване на 1ния ред автоамтично товаря 2ри и чака ( сериините номера ) -->
         <input type="text" [name]="'product_name_' + i" class="form-control" [(ngModel)]="item.name" placeholder="Product name">
       </div>
       <div class="form-group medium-top-margin">
@@ -28,7 +36,7 @@
         <div *ngFor="let serial of item.serials; let ind = index; trackBy: trackByFn" class="small-bottom-margin row">
           <div class="col-sm-11">
             <input type="text" [name]="'serial_' + i + '_' + ind" class="form-control" [(ngModel)]="item.serials[ind]"
-              placeholder="Serial number">
+              placeholder="Serial number" (keypress)="handleKey($event, i)">
           </div>
           <div (click)="removeSerial(i, ind)" class="col-sm-1">
             <i class="fa fa-minus" aria-hidden="true"></i>

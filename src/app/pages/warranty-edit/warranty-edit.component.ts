@@ -42,7 +42,7 @@ export class WarrantyEditComponent {
           {
             name: '',
             serials: [
-
+              ''
             ]
           }
         ]
@@ -91,5 +91,11 @@ export class WarrantyEditComponent {
 
   public trackByFn(index: any, item: any) {
     return index;
+  }
+
+  public handleKey(event, prodIndex) {
+    if (event.keyCode == 13) {
+      this.addSerial(prodIndex);
+    }
   }
 }

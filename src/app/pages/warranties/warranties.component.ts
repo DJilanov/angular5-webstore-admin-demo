@@ -29,7 +29,7 @@ export class WarrantiesComponent {
     private router: Router,
     private warrantiesService: WarrantiesService,
   ) {
-    this.warranties = this.warrantiesService.getWarranties();
+    this.warranties = this.warrantiesService.getWarranties().reverse();
   };
 
   public viewWarranty(warranty) {
@@ -42,7 +42,7 @@ export class WarrantiesComponent {
 
   public deleteWarranty(warranty) {
     this.warrantiesService.deleteWarranty(warranty).subscribe((response) => {
-      this.warranties = this.warrantiesService.getWarranties();
+      this.warranties = this.warrantiesService.getWarranties().reverse();
     });
   }
 
