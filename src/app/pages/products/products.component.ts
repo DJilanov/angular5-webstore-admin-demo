@@ -42,7 +42,7 @@ export class ProductsComponent {
     };
 
     private onProductsUpdate(eventData) {
-      this.products = eventData.product;
+      this.products = this.productsService.getProducts();
     }
     
     public getLanguage() {

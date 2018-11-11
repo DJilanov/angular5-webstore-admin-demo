@@ -47,8 +47,6 @@ export class ProductEditComponent {
         private categoriesService: CategoriesService,
         private errorHandlerService: ErrorHandlerService,
     ) {
-        // TODO: get the product id from the route and get it from the product service based on the id
-        // this.product = productsService.getProducts();
         this.categories = this.categoriesService.getCategories();
         this.eventBusService.productsUpdate.subscribe(data => this.productUpdated(data));
 
@@ -119,7 +117,10 @@ export class ProductEditComponent {
 
     public getProducts() {
         this.backendService.getProducts().subscribe(
-            data =>this.eventBusService.emitProductsUpdate(data.json()),
+            data => {
+              this.productsService.setProducts(data.json())
+              this.eventBusService.emitProductsUpdate(data.json())
+            },
             err => this.errorHandlerService.handleRequestError(err)
         );
     }

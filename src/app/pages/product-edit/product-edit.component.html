@@ -138,7 +138,7 @@
 
         <div class="form-group medium-top-margin">
             <label class="input-label">Upload main image</label>
-            <span *ngIf="product.mainImage.length">Current image: {{product.mainImage}}</span>
+            <span *ngIf="product.mainImage && product.mainImage.length">Current image: {{product.mainImage}}</span>
             <input type="file" class="form-control" accept="image/*" (change)="fileSelected($event.target.files[0], 'mainImage')" [(ngModel)]="product.mainImage"
                 placeholder="Upload main image" name="mainImage" />
         </div>
