@@ -7,5 +7,5 @@ export const environment = {
 	production: true,
 	envName: 'prod',
 	appUrl: 'http://jilanov.com:4200/',
-	apiUrl: 'http://jilanov.com:8080/api/',
+	apiUrl: 'https://young-hollows-14872.herokuapp.com/api/',
 };
